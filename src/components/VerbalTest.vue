@@ -3,7 +3,7 @@
     <div class="verbal__question-section"
     v-for="(question, index) in testData" :key="question.id">
       <div class="verbal__question-section__number">
-        PREGUNTA {{index+1}}/24
+        PREGUNTA {{index+1}}/{{testData.length}}
       </div>
       <div class="verbal__question-section__question-answer">
         <div class="verbal__question-section__question-answer__question">
