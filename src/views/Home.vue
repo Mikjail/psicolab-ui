@@ -1,18 +1,25 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <nav-bar> </nav-bar>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import NavBar from '@/components/NavBar.vue';
 
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld,
-  },
-};
+@Component({ components: { NavBar } })
+export default class Home extends Vue {
+
+}
 </script>
+
+<style lang="scss">
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+</style>

@@ -1,0 +1,32 @@
+@mixin btn-outline-white {
+  border-radius: 4px;
+  min-width: 120px;
+  height: 30px;
+  color: white;
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover{
+    color: $primary;
+    background: white;
+  }
+}
+
+@mixin btn-outline-primary {
+  border-radius: 4px;
+  min-width: 120px;
+  height: 30px;
+  color: $primary;
+  border: 2px solid $primary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover{
+    color: white;
+    background: $primary;
+    transition: 0.5s;
+    border: 2px solid $primary-light;
+  }
+}
+
