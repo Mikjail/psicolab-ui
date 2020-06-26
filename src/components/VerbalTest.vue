@@ -109,8 +109,8 @@ export default class VerbalTest extends Vue {
                 span{
                   position: absolute;
                   border-bottom: 2px solid $primary;
-                  width: 50px;
-                  left: 100px;
+                  width: 30px;
+                  left: 115px;
                 }
                 &:hover{
                   span{
