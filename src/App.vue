@@ -20,4 +20,15 @@ body {
 body{
   height: 100%;
 }
+.page-item {
+   &.active{
+     .page-link{
+       background-color: $primary !important;
+       border-color: $primary !important;
+     }
+   }
+   .page-link{
+     color: $primary;
+   }
+}
 </style>

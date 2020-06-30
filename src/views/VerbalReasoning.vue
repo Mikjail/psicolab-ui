@@ -1,7 +1,18 @@
 <template>
   <div class="verbal-reasoning">
-    <NavBar />
-    <VerbalTest :testData="testData"/>
+    <NavBar
+      v-on:onChangePage="onChangePage"
+      :totalPages="totalPages"
+      :currentPage="currentPage" />
+    <VerbalTest :currentList="currentList"
+      :currentPage="currentPage"
+      :totalItems="testData.length" />
+    <b-pagination
+      class="verbal__pagination"
+      align="center"
+      :totalRows="totalRows"
+      :perPage="pageSize"
+      v-model="currentPage" />
   </div>
 </template>
 <script lang="ts">
@@ -15,6 +26,12 @@ import testData from '../assets/data/verbal-reasoning.json';
 export default class VerbalReasoning extends Vue {
   testData: Array<VerbalReasoningDetail> = [] ;
 
+  totalPages = 1;
+
+  currentPage = 1;
+
+  pageSize = 10;
+
   mounted() {
     this.testData = testData.map((data: VerbalReasoningDetail) => {
       const newData = data;
@@ -24,8 +41,23 @@ export default class VerbalReasoning extends Vue {
       }));
       return newData;
     });
-    console.log(this.testData);
-    console.log(this.testData.length);
+    this.totalPages = Math.ceil(this.testData.length / this.pageSize);
+  }
+
+  onChangePage(page: number) {
+    this.currentPage = page;
+  }
+
+  get currentList() {
+    const items = this.testData;
+    return items.slice(
+      (this.currentPage - 1) * this.pageSize,
+      this.currentPage * this.pageSize,
+    );
+  }
+
+  get totalRows() {
+    return this.testData.length;
   }
 }
 
@@ -38,3 +70,8 @@ export interface VerbalReasoningDetail {
     correct_answer: string;
 }
 </script>
+<style lang="scss">
+  .verbal-reasoning{
+      margin-top: 65px;
+  }
+</style>

@@ -1,9 +1,9 @@
 <template>
   <div class="container verbal">
     <div class="verbal__question-section"
-    v-for="(question, index) in testData" :key="question.id">
+    v-for="(question, index) in currentList" :key="question.id">
       <div class="verbal__question-section__number">
-        PREGUNTA {{index+1}}/{{testData.length}}
+        PREGUNTA {{currentIndex(index)}}/{{totalItems}}
       </div>
       <div class="verbal__question-section__question-answer">
         <div class="verbal__question-section__question-answer__question">
@@ -36,24 +36,41 @@ import { VerbalReasoningDetail } from '../views/VerbalReasoning.vue';
 
 @Component
 export default class VerbalTest extends Vue {
-  @Prop({ required: true }) testData!: Array<VerbalReasoningDetail>;
+  @Prop({ required: true }) currentList!: Array<VerbalReasoningDetail>;
+
+  @Prop({ required: true, default: 1 }) currentPage!: number;
+
+  @Prop({ required: true, default: 1 }) totalItems!: number;
 
   questionSelected: any = {};
 
-  @Watch('testData')
+  @Watch('currentList')
   onMssgesChanged() {
-    this.testData.forEach((question) => {
+    this.currentList.forEach((question) => {
       this.$set(this.questionSelected, question.id, `${question.id}_${question.correct_answer}`);
     });
   }
+
+  currentIndex(index: number) {
+    const currentIndex = index + 1;
+    if (this.currentPage === 1) {
+      return currentIndex;
+    }
+    return (this.currentPage - 1) * 10 + currentIndex;
+  }
 }
 </script>
-
 <style scoped lang="scss">
 .verbal{
+  &__pagination{
+    margin-top: 30px;
+  }
   &__question-section {
     padding: 20px;
     border-bottom: 0.5px solid $primary;
+    &:last-of-type{
+      border-bottom: 0;
+    }
       &__number{
         color: $secondary;
         font-weight: 500;
@@ -90,12 +107,11 @@ export default class VerbalTest extends Vue {
               position: fixed;
               width: 0;
               &:checked + label{
-                  background-color: $primary;
-                  color:white;
-                  span{
-                      border-bottom: 2px solid white;
-                  }
-
+                background-color: $primary;
+                color:white;
+                span{
+                    border-bottom: 2px solid white;
+                }
               }
             }
             label{
@@ -104,7 +120,7 @@ export default class VerbalTest extends Vue {
                 width: 270px;
                 justify-content: space-between;
                 position: relative;
-                padding: 14px 20px;
+                padding: 14px 12px;
                 margin-bottom: 16px;
                 span{
                   position: absolute;
