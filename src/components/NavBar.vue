@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar fixed-top">
-     <div class="container-fluid">
+     <div class="container">
        <div class="d-flex w-100">
          <div class="navbar__nav-btn">
            <button class="btn navbar__nav-btn__back"
