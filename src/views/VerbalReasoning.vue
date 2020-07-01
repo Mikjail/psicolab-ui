@@ -3,10 +3,14 @@
     <NavBar
       v-on:onChangePage="onChangePage"
       :totalPages="totalPages"
-      :currentPage="currentPage" />
-    <VerbalTest :currentList="currentList"
       :currentPage="currentPage"
-      :totalItems="testData.length" />
+      :totalQuestions="totalQuestions"
+      :totalAnswers="totalAnswers" />
+    <VerbalTest
+      :currentList="currentList"
+      :currentPage="currentPage"
+      :totalItems="testData.length"
+      v-on:questionAsnwered="questionAsnwered" />
     <b-pagination
       class="verbal__pagination"
       align="center"
@@ -32,6 +36,10 @@ export default class VerbalReasoning extends Vue {
 
   pageSize = 10;
 
+  totalAnswers = 0;
+
+  totalQuestions = 0;
+
   mounted() {
     this.testData = testData.map((data: VerbalReasoningDetail) => {
       const newData = data;
@@ -42,6 +50,7 @@ export default class VerbalReasoning extends Vue {
       return newData;
     });
     this.totalPages = Math.ceil(this.testData.length / this.pageSize);
+    this.totalQuestions = this.testData.length;
   }
 
   onChangePage(page: number) {
@@ -58,6 +67,10 @@ export default class VerbalReasoning extends Vue {
 
   get totalRows() {
     return this.testData.length;
+  }
+
+  questionAsnwered(numberAnswers: number) {
+    this.totalAnswers = numberAnswers;
   }
 }
 

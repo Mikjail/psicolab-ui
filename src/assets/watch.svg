@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="29px" height="26px" viewBox="0 0 29 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>watch</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="UI-/-Components-/-Icons-/-watch-white" transform="translate(-40.000000, 1.000000)">
+            <g id="Time" transform="translate(0.000000, 0.000000)">
+                <g id="watch" transform="translate(41.000000, 0.000000)">
+                    <g id="Group-3" transform="translate(11.811830, 7.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                        <rect id="Rectangle" x="0" y="0" width="2" height="9" rx="1"></rect>
+                        <rect id="Rectangle" x="0" y="7" width="7" height="2" rx="1"></rect>
+                    </g>
+                    <circle id="Oval" stroke="#FFFFFF" stroke-width="2" cx="13.3118304" cy="13.5" r="10.5"></circle>
+                    <path d="M-2.27373675e-13,8.5 C1.99206954,4.1954169 4.95872532,1.50396227 8.89996733,0.425636109" id="Path-2" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" fill-rule="nonzero"></path>
+                    <path d="M17.8118304,8.07436389 C19.8038999,3.76978079 22.7705557,1.07832616 26.7117977,1.13686838e-13" id="Path-2-Copy" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" fill-rule="nonzero" transform="translate(22.261814, 4.037182) scale(-1, 1) translate(-22.261814, -4.037182) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

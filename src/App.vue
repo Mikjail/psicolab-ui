@@ -31,4 +31,12 @@ body{
      color: $primary;
    }
 }
+.progress {
+  background-color: $primary;
+  border: 2px solid white;
+  .progress-bar{
+   background-color: white;
+  }
+}
+
 </style>

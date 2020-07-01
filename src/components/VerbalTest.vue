@@ -49,6 +49,7 @@ export default class VerbalTest extends Vue {
     this.currentList.forEach((question) => {
       this.$set(this.questionSelected, question.id, `${question.id}_${question.correct_answer}`);
     });
+    this.questionAnswered();
   }
 
   currentIndex(index: number) {
@@ -57,6 +58,11 @@ export default class VerbalTest extends Vue {
       return currentIndex;
     }
     return (this.currentPage - 1) * 10 + currentIndex;
+  }
+
+  questionAnswered() {
+    const questionsAns = Object.keys(this.questionSelected).length;
+    this.$emit('questionAsnwered', questionsAns);
   }
 }
 </script>
