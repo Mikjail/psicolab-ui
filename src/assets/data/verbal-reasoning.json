@@ -95,11 +95,11 @@
     "alternatives": [
       {
         "id": "a",
-        "answer": "elefante - gamo"
+        "answer": "elefante - cuerno"
       },
       {
         "id": "b",
-        "answer": "marfil - gamo"
+        "answer": "marfil - cuerno"
       },
       {
         "id": "c",
@@ -178,7 +178,7 @@
     "id": "7",
     "points": "",
     "category": "Verbal_Reasoning",
-    "description": "es a varrera como lentitud es a",
+    "description": "es a carrera como lentitud es a",
     "alternatives": [
       {
         "id": "a",
@@ -555,11 +555,11 @@
     "id": "20",
     "points": "",
     "category": "Verbal_Reasoning",
-    "description": "es a Inglaterra como lira es a",
+    "description": "es a Inglaterra como rublo es a",
     "alternatives": [
       {
         "id": "a",
-        "answer": "libra - Italia"
+        "answer": "libra - Rusia"
       },
       {
         "id": "b",
@@ -575,7 +575,7 @@
       },
       {
         "id": "e",
-        "answer": "Londres - Italia"
+        "answer": "Londres - Rusia"
       }
     ],
     "correct_answer": "a"
@@ -787,7 +787,7 @@
     "id": "28",
     "points": "",
     "category": "Verbal_Reasoning",
-    "description": "es a médico como secretaria es a",
+    "description": "es a médico como secretario es a",
     "alternatives": [
       {
         "id": "a",
@@ -795,7 +795,7 @@
       },
       {
         "id": "b",
-        "answer": "enfermera - ejecutivo"
+        "answer": "enfermero - ejecutivo"
       },
       {
         "id": "c",
@@ -1251,11 +1251,11 @@
     "id": "44",
     "points": "",
     "category": "Verbal_Reasoning",
-    "description": "es a gama como carnero es a",
+    "description": "es a vaca como carnero es a",
     "alternatives": [
       {
         "id": "a",
-        "answer": "gamo - oveja"
+        "answer": "toro - oveja"
       },
       {
         "id": "b",
@@ -1412,7 +1412,7 @@
       },
       {
         "id": "d",
-        "answer": "bastilla - museo"
+        "answer": "Bastilla - museo"
       },
       {
         "id": "e",
