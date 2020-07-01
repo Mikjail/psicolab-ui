@@ -108,7 +108,7 @@ export default class NavBar extends Vue {
     display:flex;
     align-items: center;
     justify-content: flex-end;
-    flex-basis: 10%;
+    flex-basis: 12%;
     &__time{
       color: white;
       font-weight: bold;
@@ -120,7 +120,7 @@ export default class NavBar extends Vue {
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    flex-basis: 60%;
+    flex-basis: 58%;
     height: 56px;
     &__bar{
       display: block;

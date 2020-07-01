@@ -44,11 +44,8 @@ export default class VerbalTest extends Vue {
 
   questionSelected: any = {};
 
-  @Watch('currentList')
+  @Watch('questionSelected')
   onMssgesChanged() {
-    this.currentList.forEach((question) => {
-      this.$set(this.questionSelected, question.id, `${question.id}_${question.correct_answer}`);
-    });
     this.questionAnswered();
   }
 
