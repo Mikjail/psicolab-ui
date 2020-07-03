@@ -14,9 +14,29 @@
               <b-progress
                 :value="totalProgress"
                 class="w-100"> </b-progress>
-              <p class="navbar__progress__text">
-                {{totalAnswers}} de {{totalQuestions}} preguntas respondidas
-              </p>
+                <a
+                id="dropdown-list"
+                class="navbar__progress__dropdown-btn"
+                href="javascript:void(0)"
+                @click="onToggleDropdown">
+                  {{totalAnswers}} de {{totalQuestions}} preguntas respondidas
+                </a>
+                <div
+                v-if="questionDropdown"
+                class="navbar__progress__dropdown-list">
+                  <div class="navbar__progress__dropdown-list__title">
+                    Navegar a:
+                  </div>
+                  <ul>
+                    <template v-for="index in totalQuestions">
+                      <li :class="{ answered: questionAsnwered[index]}"
+                          :key="index"
+                          @click="onNavigateTo(index)">
+                            PREGUNTA {{index}}
+                      </li>
+                    </template>
+                  </ul>
+                </div>
             </div>
         </div>
         <div class="navbar__timer">
@@ -31,6 +51,11 @@
               @click="onNext">
               Siguiente
           </button>
+           <button class="btn navbar__nav-btn__next"
+              v-if="currentPage === totalPages"
+              @click="onFinish">
+              Finalizar
+          </button>
         </div>
        </div>
 
@@ -39,6 +64,7 @@
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
+import { BIconTypeStrikethrough } from 'bootstrap-vue';
 
 @Component({
   filters: {
@@ -59,9 +85,17 @@ export default class NavBar extends Vue {
 
   @Prop({ required: true, default: 0 }) totalAnswers!: number;
 
+  @Prop({ required: true, default: {} }) questionAsnwered!: number;
+
   deadline!: Date;
 
-  currentTime = 0
+  currentTime = 0;
+
+  questionDropdown = false;
+
+  created() {
+    document.addEventListener('click', this.onDocumentClick);
+  }
 
   mounted() {
     const time = new Date();
@@ -90,13 +124,46 @@ export default class NavBar extends Vue {
     this.$emit('onChangePage', this.currentPage - 1);
   }
 
+  onToggleDropdown() {
+    this.questionDropdown = !this.questionDropdown;
+  }
+
+  onNavigateTo(index: number) {
+    let page = 1;
+    if (index < 10) {
+      page = 1;
+    } else if (index % 10 === 0) {
+      page = index / 10;
+    } else {
+      page = Math.ceil(index / 10);
+    }
+    this.$emit('onChangeQuestion', { question: index, page });
+  }
+
+  onFinish() {
+    this.$emit('onChangePage', this.currentPage + 1);
+  }
+
   countDown() {
     this.currentTime = this.deadline.getTime() - new Date().getTime();
     if (this.currentTime > 0) {
       setTimeout(this.countDown, 1000);
     } else {
       alert('Su tiempo ha finalizado');
+      this.currentPage = 0;
     }
+  }
+
+  onDocumentClick(e: any) {
+    const element = document.getElementById('dropdown-list');
+    const { target } = e;
+    if ((element && element !== target) && !element.contains(target)) {
+      this.questionDropdown = false;
+    }
+  }
+
+  destroyed() {
+    document.removeEventListener('click', this.onDocumentClick);
   }
 }
 </script>
@@ -127,12 +194,58 @@ export default class NavBar extends Vue {
       width: 450px;
       height: auto;
     }
-    &__text{
+    &__dropdown-btn{
       display:block;
       margin-bottom:0;
       color: white;
       font-weight: bold;
       margin-top: 4px;
+      &:after{
+        content: "";
+        display: inline-block;
+        background: url("../assets/dropdown_arrow.svg") no-repeat;
+        width: 12px;
+        height: 12px;
+        top: 2px;
+        position: relative;
+      }
+      &:hover{
+        color:white;
+        text-decoration: none;
+      }
+    }
+    &__dropdown-list{
+      position: absolute;
+      background-color: white;
+      list-style: none;
+      border-radius: 4px;
+      height: 250px;
+      top: 73px;
+      box-shadow: 10px 10px 20px -5px rgba(0, 0, 0, 0.35);
+      &__title{
+        padding: 5px 16px;
+        height: 15%;
+        background-color: $primary;
+        color: white;
+        font-weight: bold;
+      }
+      ul {
+        padding-left: 16px;
+        list-style-type: none;
+        overflow: scroll;
+        height: 85%;
+        li{
+          width: 130px;
+          margin-bottom: 5px;
+          font-size: 14px;
+          font-weight: bold;
+          color: $primary-light;
+          cursor: pointer;
+          &.answered{
+            color: $primary;
+          }
+        }
+      }
     }
   }
   &__nav-btn{

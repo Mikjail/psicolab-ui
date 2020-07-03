@@ -2,10 +2,12 @@
   <div class="verbal-reasoning">
     <NavBar
       v-on:onChangePage="onChangePage"
+      v-on:onChangeQuestion="onChangeQuestion"
       :totalPages="totalPages"
       :currentPage="currentPage"
       :totalQuestions="totalQuestions"
-      :totalAnswers="totalAnswers" />
+      :totalAnswers="totalAnswers"
+      :questionAsnwered="questionsSelected" />
     <VerbalTest
       :currentList="currentList"
       :currentPage="currentPage"
@@ -40,6 +42,8 @@ export default class VerbalReasoning extends Vue {
 
   totalQuestions = 0;
 
+  questionsSelected = {};
+
   mounted() {
     this.testData = testData.map((data: VerbalReasoningDetail) => {
       const newData = data;
@@ -51,10 +55,6 @@ export default class VerbalReasoning extends Vue {
     });
     this.totalPages = Math.ceil(this.testData.length / this.pageSize);
     this.totalQuestions = this.testData.length;
-  }
-
-  onChangePage(page: number) {
-    this.currentPage = page;
   }
 
   get currentList() {
@@ -69,8 +69,26 @@ export default class VerbalReasoning extends Vue {
     return this.testData.length;
   }
 
-  questionAsnwered(numberAnswers: number) {
-    this.totalAnswers = numberAnswers;
+  questionAsnwered(questionSelected: any) {
+    this.questionsSelected = questionSelected;
+    this.totalAnswers = Object.keys(questionSelected).length;
+  }
+
+  onChangeQuestion(navigateTo: { page: number; question: number}) {
+    const time = navigateTo.page !== this.currentPage ? 200 : 0;
+    setTimeout(() => {
+      VerbalReasoning.scrollToView(navigateTo.question);
+    }, time);
+    this.currentPage = navigateTo.page;
+  }
+
+  onChangePage(page: number) {
+    this.currentPage = page;
+  }
+
+  static scrollToView(questionNumber: number) {
+    const element = document.getElementById(`question-${questionNumber}`);
+    if (element) element.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 }
 

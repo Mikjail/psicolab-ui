@@ -1,7 +1,8 @@
 <template>
   <div class="container verbal">
     <div class="verbal__question-section"
-    v-for="(question, index) in currentList" :key="question.id">
+    v-for="(question, index) in currentList" :key="question.id"
+    :id="`question-${currentIndex(index)}`">
       <div class="verbal__question-section__number">
         PREGUNTA {{currentIndex(index)}}/{{totalItems}}
       </div>
@@ -58,8 +59,7 @@ export default class VerbalTest extends Vue {
   }
 
   questionAnswered() {
-    const questionsAns = Object.keys(this.questionSelected).length;
-    this.$emit('questionAsnwered', questionsAns);
+    this.$emit('questionAsnwered', this.questionSelected);
   }
 }
 </script>
@@ -105,6 +105,7 @@ export default class VerbalTest extends Vue {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+
             input[type="radio"] {
               opacity: 0;
               position: fixed;
@@ -119,12 +120,13 @@ export default class VerbalTest extends Vue {
             }
             label{
                 @include btn-outline-primary;
+                justify-content: space-between;
                 font-weight: 600;
                 width: 270px;
-                justify-content: space-between;
                 position: relative;
                 padding: 14px 12px;
                 margin-bottom: 16px;
+                cursor: pointer;
                 span{
                   position: absolute;
                   border-bottom: 2px solid $primary;
