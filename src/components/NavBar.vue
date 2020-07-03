@@ -58,7 +58,6 @@
           </button>
         </div>
        </div>
-
     </div>
   </nav>
 </template>
@@ -230,19 +229,25 @@ export default class NavBar extends Vue {
         font-weight: bold;
       }
       ul {
-        padding-left: 16px;
+        padding-left: 0;
         list-style-type: none;
         overflow: scroll;
         height: 85%;
         li{
           width: 130px;
-          padding-bottom: 5px;
+          padding-left: 16px;
+          padding-top: 2px;
+          padding-bottom: 2px;
           font-size: 14px;
           font-weight: bold;
           color: $primary-light;
           cursor: pointer;
           &.answered{
             color: $primary;
+          }
+          &:hover{
+            background-color: $primary;
+            color: white;
           }
         }
       }
