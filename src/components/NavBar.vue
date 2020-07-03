@@ -150,7 +150,7 @@ export default class NavBar extends Vue {
       setTimeout(this.countDown, 1000);
     } else {
       alert('Su tiempo ha finalizado');
-      this.currentPage = 0;
+      this.currentTime = 0;
     }
   }
 
@@ -236,7 +236,7 @@ export default class NavBar extends Vue {
         height: 85%;
         li{
           width: 130px;
-          margin-bottom: 5px;
+          padding-bottom: 5px;
           font-size: 14px;
           font-weight: bold;
           color: $primary-light;
