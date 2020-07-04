@@ -3,7 +3,9 @@
     <div class="verbal__question-section"
     v-for="(question, index) in currentList" :key="question.id"
     :id="`question-${currentIndex(index)}`">
-      <div class="verbal__question-section__number">
+      <div
+      class="verbal__question-section__number"
+      :id="`question-number-${currentIndex(index)}`">
         PREGUNTA {{currentIndex(index)}}/{{totalItems}}
       </div>
       <div class="verbal__question-section__question-answer">
@@ -71,6 +73,10 @@ export default class VerbalTest extends Vue {
   &__question-section {
     padding: 20px;
     border-bottom: 0.5px solid $primary;
+    transition: 1s;
+        &.selected{
+          @include shadow-panel-secondary;
+        }
     &:last-of-type{
       border-bottom: 0;
     }

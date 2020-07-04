@@ -30,3 +30,8 @@
   }
 }
 
+@mixin shadow-panel-secondary {
+  -webkit-box-shadow: inset 0px 0px 86px -39px rgba(197,117,255,0.71);
+-moz-box-shadow: inset 0px 0px 86px -39px rgba(197,117,255,0.71);
+box-shadow: inset 0px 0px 86px -39px rgba(197,117,255,0.71);
+}

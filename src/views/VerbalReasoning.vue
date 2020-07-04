@@ -78,6 +78,7 @@ export default class VerbalReasoning extends Vue {
     const time = navigateTo.page !== this.currentPage ? 200 : 0;
     setTimeout(() => {
       VerbalReasoning.scrollToView(navigateTo.question);
+      VerbalReasoning.toggleShadow(navigateTo.question);
     }, time);
     this.currentPage = navigateTo.page;
   }
@@ -89,6 +90,15 @@ export default class VerbalReasoning extends Vue {
   static scrollToView(questionNumber: number) {
     const element = document.getElementById(`question-${questionNumber}`);
     if (element) element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  static toggleShadow(questionNumber: number) {
+    // const element = document.getElementById(`question-number-${questionNumber}`);
+    const element = document.getElementById(`question-${questionNumber}`);
+    if (element) element.classList.add('selected');
+    setTimeout(() => {
+      if (element) element.classList.remove('selected');
+    }, 1000);
   }
 }
 
