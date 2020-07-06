@@ -1,34 +1,28 @@
 <template>
   <div class="verbal-reasoning">
     <NavBar
-      v-on:onChangePage="onChangePage"
-      v-on:onChangeQuestion="onChangeQuestion"
-      :totalPages="totalPages"
-      :currentPage="currentPage"
       :totalQuestions="totalQuestions"
-      :totalAnswers="totalAnswers"
-      :questionAsnwered="questionsSelected" />
-    <VerbalTest
-      :currentList="currentList"
+      :totalAnswers="totalAnswers" />
+      <VerbalTest
+      :currentQuestion="currentQuestion"
       :currentPage="currentPage"
       :totalItems="testData.length"
       v-on:questionAsnwered="questionAsnwered" />
-    <b-pagination
-      class="verbal__pagination"
-      align="center"
-      :totalRows="totalRows"
-      :perPage="pageSize"
-      v-model="currentPage" />
+      <FooterNav
+        :currentPage="currentPage"
+        :totalQuestions="totalQuestions"
+        v-on:onChangePage="onChangePage" />
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import NavBar from '@/components/NavBar.vue';
 import VerbalTest from '@/components/VerbalTest.vue';
+import FooterNav from '@/components/FooterNav.vue';
 // eslint-disable-next-line
 import testData from '../assets/data/verbal-reasoning.json';
 
-@Component({ components: { NavBar, VerbalTest } })
+@Component({ components: { NavBar, VerbalTest, FooterNav } })
 export default class VerbalReasoning extends Vue {
   testData: Array<VerbalReasoningDetail> = [] ;
 
@@ -57,12 +51,8 @@ export default class VerbalReasoning extends Vue {
     this.totalQuestions = this.testData.length;
   }
 
-  get currentList() {
-    const items = this.testData;
-    return items.slice(
-      (this.currentPage - 1) * this.pageSize,
-      this.currentPage * this.pageSize,
-    );
+  get currentQuestion() {
+    return this.testData[this.currentPage - 1] || {};
   }
 
   get totalRows() {
@@ -74,31 +64,8 @@ export default class VerbalReasoning extends Vue {
     this.totalAnswers = Object.keys(questionSelected).length;
   }
 
-  onChangeQuestion(navigateTo: { page: number; question: number}) {
-    const time = navigateTo.page !== this.currentPage ? 200 : 0;
-    setTimeout(() => {
-      VerbalReasoning.scrollToView(navigateTo.question);
-      VerbalReasoning.toggleShadow(navigateTo.question);
-    }, time);
-    this.currentPage = navigateTo.page;
-  }
-
   onChangePage(page: number) {
     this.currentPage = page;
-  }
-
-  static scrollToView(questionNumber: number) {
-    const element = document.getElementById(`question-${questionNumber}`);
-    if (element) element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-
-  static toggleShadow(questionNumber: number) {
-    // const element = document.getElementById(`question-number-${questionNumber}`);
-    const element = document.getElementById(`question-${questionNumber}`);
-    if (element) element.classList.add('selected');
-    setTimeout(() => {
-      if (element) element.classList.remove('selected');
-    }, 1000);
   }
 }
 
@@ -113,6 +80,14 @@ export interface VerbalReasoningDetail {
 </script>
 <style lang="scss">
   .verbal-reasoning{
-      margin-top: 65px;
+      padding-top: 180px;
+    &__nav-btns{
+      display:flex;
+      justify-content: space-between;
+      margin-top: 120px;
+      button{
+        @include btn-primary;
+      }
+    }
   }
 </style>

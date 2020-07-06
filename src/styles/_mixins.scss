@@ -30,6 +30,23 @@
   }
 }
 
+@mixin btn-primary {
+  border-radius: 4px;
+  min-width: 120px;
+  height: 30px;
+  background-color: $primary;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover{
+    color: white;
+    background: $primary;
+    transition: 0.5s;
+    border: 2px solid $primary-light;
+  }
+}
+
 @mixin shadow-panel-secondary {
   -webkit-box-shadow: inset 0px 0px 86px -39px rgba(197,117,255,0.71);
 -moz-box-shadow: inset 0px 0px 86px -39px rgba(197,117,255,0.71);

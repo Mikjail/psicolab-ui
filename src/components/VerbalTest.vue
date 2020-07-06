@@ -1,31 +1,37 @@
 <template>
-  <div class="container verbal">
-    <div class="verbal__question-section"
-    v-for="(question, index) in currentList" :key="question.id"
-    :id="`question-${currentIndex(index)}`">
-      <div
-      class="verbal__question-section__number"
-      :id="`question-number-${currentIndex(index)}`">
-        PREGUNTA {{currentIndex(index)}}/{{totalItems}}
-      </div>
-      <div class="verbal__question-section__question-answer">
-        <div class="verbal__question-section__question-answer__question">
-              <span></span>{{question.description}}<span></span>
-        </div>
-        <div class="verbal__question-section__question-answer__answer">
-            <div v-for="option in question.alternatives" :key="`${question.id}__${option.id}`">
-              <input
-                v-model="questionSelected[question.id]"
-                :value="`${question.id}_${option.id}`"
-                :id="`${question.id}_${option.id}`"
-                type="radio"/>
-              <label
-                :for="`${question.id}_${option.id}`">
-                {{option.answer[0]}}
-                <span></span>
-                {{option.answer[1]}}
-              </label>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="verbal col-9">
+        <div class="verbal__question-section"
+        :id="`question-${currentPage}`">
+          <div
+          class="verbal__question-section__number"
+          :id="`question-number-${currentPage}`">
+            PREGUNTA {{currentPage}}/{{totalItems}}
+          </div>
+          <div
+          v-if="currentQuestion.description"
+          class="verbal__question-section__question-answer">
+            <div class="verbal__question-section__question-answer__question">
+                  <span></span>{{currentQuestion.description}}<span></span>
             </div>
+            <div class="verbal__question-section__question-answer__answer">
+                <div v-for="option in currentQuestion.alternatives"
+                :key="`${currentQuestion.id}__${option.id}`">
+                  <input
+                    v-model="questionSelected[currentQuestion.id]"
+                    :value="`${currentQuestion.id}_${option.id}`"
+                    :id="`${currentQuestion.id}_${option.id}`"
+                    type="radio"/>
+                  <label
+                    :for="`${currentQuestion.id}_${option.id}`">
+                    {{option.answer[0]}}
+                    <span></span>
+                    {{option.answer[1]}}
+                  </label>
+                </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -39,7 +45,7 @@ import { VerbalReasoningDetail } from '../views/VerbalReasoning.vue';
 
 @Component
 export default class VerbalTest extends Vue {
-  @Prop({ required: true }) currentList!: Array<VerbalReasoningDetail>;
+  @Prop({ required: true }) currentQuestion!: Array<VerbalReasoningDetail>;
 
   @Prop({ required: true, default: 1 }) currentPage!: number;
 
@@ -50,14 +56,6 @@ export default class VerbalTest extends Vue {
   @Watch('questionSelected')
   onMssgesChanged() {
     this.questionAnswered();
-  }
-
-  currentIndex(index: number) {
-    const currentIndex = index + 1;
-    if (this.currentPage === 1) {
-      return currentIndex;
-    }
-    return (this.currentPage - 1) * 10 + currentIndex;
   }
 
   questionAnswered() {
@@ -71,7 +69,6 @@ export default class VerbalTest extends Vue {
     margin-top: 30px;
   }
   &__question-section {
-    padding: 20px;
     border-bottom: 0.5px solid $primary;
     transition: 1s;
         &.selected{
@@ -83,10 +80,12 @@ export default class VerbalTest extends Vue {
       &__number{
         color: $secondary;
         font-weight: 500;
+        font-size: 18px;
       }
       &__question-answer{
         display:flex;
         justify-content: space-between;
+        margin-top: 80px;
         &__question,
         &__answer{
           flex-basis: 50%;
@@ -97,6 +96,7 @@ export default class VerbalTest extends Vue {
           align-items: center;
           font-weight: bold;
           color: $dark-gray;
+          font-size: 18px;
           span{
             position:relative;
             color: $primary;
