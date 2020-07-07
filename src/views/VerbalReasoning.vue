@@ -3,15 +3,28 @@
     <NavBar
       :totalQuestions="totalQuestions"
       :totalAnswers="totalAnswers" />
-      <VerbalTest
-      :currentQuestion="currentQuestion"
-      :currentPage="currentPage"
-      :totalItems="testData.length"
-      v-on:questionAsnwered="questionAsnwered" />
-      <FooterNav
-        :currentPage="currentPage"
-        :totalQuestions="totalQuestions"
-        v-on:onChangePage="onChangePage" />
+      <div class="container">
+        <QuestionMap
+          :totalQuestions="totalQuestions"
+          :questionsAnswered="questionsSelected"  />
+          <div class="row justify-content-center">
+            <div class="col-9">
+              <VerbalTest
+              :currentQuestion="currentQuestion"
+              :currentPage="currentPage"
+              :totalItems="testData.length"
+              v-on:questionAsnwered="questionAsnwered" />
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-12 col-xl-9">
+              <FooterNav
+                :currentPage="currentPage"
+                :totalQuestions="totalQuestions"
+                v-on:onChangePage="onChangePage" />
+            </div>
+          </div>
+      </div>
   </div>
 </template>
 <script lang="ts">
@@ -19,10 +32,15 @@ import { Component, Vue } from 'vue-property-decorator';
 import NavBar from '@/components/NavBar.vue';
 import VerbalTest from '@/components/VerbalTest.vue';
 import FooterNav from '@/components/FooterNav.vue';
+import QuestionMap from '@/components/QuestionMap.vue';
 // eslint-disable-next-line
 import testData from '../assets/data/verbal-reasoning.json';
 
-@Component({ components: { NavBar, VerbalTest, FooterNav } })
+@Component({
+  components: {
+    NavBar, VerbalTest, FooterNav, QuestionMap,
+  },
+})
 export default class VerbalReasoning extends Vue {
   testData: Array<VerbalReasoningDetail> = [] ;
 
@@ -60,6 +78,8 @@ export default class VerbalReasoning extends Vue {
   }
 
   questionAsnwered(questionSelected: any) {
+    console.log('uepale');
+    console.log(questionSelected);
     this.questionsSelected = questionSelected;
     this.totalAnswers = Object.keys(questionSelected).length;
   }

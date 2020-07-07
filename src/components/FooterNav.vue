@@ -1,21 +1,15 @@
 <template>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12 col-xl-9">
-        <div class="footer-nav__nav-btns">
-            <button class="footer-nav__nav-btns__back btn"
-              v-if="!isFirstPage"
-              @click="onBack()">
-              Volver
-            </button>
-            <button class="footer-nav__nav-btns__next btn"
-              v-if="!isLastPage"
-              @click="onNext()">
-              Siguiente
-            </button>
-        </div>
-      </div>
-    </div>
+  <div class="footer-nav__nav-btns">
+      <button class="footer-nav__nav-btns__back btn"
+        v-if="!isFirstPage"
+        @click="onBack()">
+        Volver
+      </button>
+      <button class="footer-nav__nav-btns__next btn"
+        v-if="!isLastPage"
+        @click="onNext()">
+        Siguiente
+      </button>
   </div>
 </template>
 <script lang="ts">

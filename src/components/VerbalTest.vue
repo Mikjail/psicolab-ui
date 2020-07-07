@@ -1,7 +1,5 @@
 <template>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="verbal col-9">
+      <div class="verbal">
         <div class="verbal__question-section"
         :id="`question-${currentPage}`">
           <div
@@ -34,8 +32,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
 </template>
 <script lang="ts">
 import {
@@ -86,9 +82,11 @@ export default class VerbalTest extends Vue {
         display:flex;
         justify-content: space-between;
         margin-top: 80px;
-        &__question,
+        &__question{
+          flex-basis: 68%;
+        }
         &__answer{
-          flex-basis: 50%;
+          flex-basis: 32%;
         }
         &__question {
           display: flex;
@@ -101,17 +99,17 @@ export default class VerbalTest extends Vue {
             position:relative;
             color: $primary;
             top: 8px;
-            width: 30px;
+            width: 50px;
             font-weight: 600;
             border-bottom: 2px solid $primary;
+            margin: 0 10px;
           }
         }
         &__answer {
           display: flex;
           flex-direction: column;
           justify-content: center;
-          align-items: center;
-
+          align-items: flex-end;
             input[type="radio"] {
               opacity: 0;
               position: fixed;
