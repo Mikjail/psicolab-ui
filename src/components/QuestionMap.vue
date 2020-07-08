@@ -1,7 +1,10 @@
 <template>
   <div class="question-map">
     <div class="question-map__timer">
-        30:00
+        <span class="question-map__timer__time">
+          {{minutes}}:{{seconds}}
+        </span>
+        <span class="question-map__timer__icon"></span>
       </div>
       <div class="question-map__title">
         <span>
@@ -12,6 +15,8 @@
         <div class="question-map__list__row-1">
           <button
           class="btn"
+          :class="{ answered : questionsAnswered[index]}"
+          @click="onNavigateTo(index)"
           v-for="index in firstRow"
           :key="index">
               {{index}}
@@ -19,7 +24,9 @@
         </div>
         <div class="question-map__list__row-2">
           <button
+          @click="onNavigateTo(secondRowNumber(index))"
           class="btn"
+          :class="{ answered : questionsAnswered[secondRowNumber(index)]}"
           v-for="index in secondRow"
           :key="index">
               {{secondRowNumber(index)}}
@@ -37,6 +44,17 @@ export default class QuestionMap extends Vue {
 
   @Prop({ required: true, default: 1 }) questionsAnswered!: any;
 
+  deadline!: Date;
+
+  currentTime = 0;
+
+  mounted() {
+    const time = new Date();
+    this.deadline = new Date();
+    this.deadline.setTime(time.getTime() + (30 * 60 * 1000));
+    this.countDown();
+  }
+
   get firstRow() {
     return Math.ceil(this.totalQuestions / 2);
   }
@@ -45,9 +63,32 @@ export default class QuestionMap extends Vue {
     return Math.round(this.totalQuestions / 2);
   }
 
+  get seconds() {
+    const time = Math.floor((this.currentTime / 1000) % 60);
+    return time < 10 ? `0${time}` : time;
+  }
+
+  get minutes() {
+    return Math.floor((this.currentTime / 1000 / 60) % 60);
+  }
+
+  countDown() {
+    this.currentTime = this.deadline.getTime() - new Date().getTime();
+    if (this.currentTime > 0) {
+      setTimeout(this.countDown, 1000);
+    } else {
+      alert('Su tiempo ha finalizado');
+      this.currentTime = 0;
+    }
+  }
+
   secondRowNumber(index: number) {
     const firstHalf = Math.ceil(this.totalQuestions / 2);
     return firstHalf + index;
+  }
+
+  onNavigateTo(index: number) {
+    this.$emit('onChangeQuestion', index);
   }
 }
 </script>
@@ -59,14 +100,26 @@ export default class QuestionMap extends Vue {
     border-radius: 4px;
     position: absolute;
     right: 10%;
+    background-color: white;
+    z-index:900;
     &__timer {
       display:flex;
-      justify-content: center;
+      justify-content: flex-end;
       align-items: center;
       background-color: $primary;
       height: 40px;
       color: white;
       font-weight: bold;
+      padding: 0 10px;
+      &__time{
+        margin-right: 8px;
+      }
+      &__icon{
+        background: url('../assets/watch.svg') no-repeat;
+        height: 30px;
+        width: 30px;
+        position: relative;
+      }
     }
     &__title{
       padding: 10px;
@@ -100,8 +153,17 @@ export default class QuestionMap extends Vue {
           height: 30px;
           font-size: 14px;
           font-weight: 600;
+          &.answered{
+            background: $primary;
+            color: white;
+          }
         }
       }
+    }
+  }
+  @media only screen and (max-width: 1500px) {
+    .question-map{
+      right: 16px;
     }
   }
 </style>

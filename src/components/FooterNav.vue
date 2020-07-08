@@ -30,11 +30,11 @@ export default class FooterNav extends Vue {
   }
 
   onNext() {
-    this.$emit('onChangePage', this.currentPage + 1);
+    this.$emit('onChangeQuestion', this.currentPage + 1);
   }
 
   onBack() {
-    this.$emit('onChangePage', this.currentPage - 1);
+    this.$emit('onChangeQuestion', this.currentPage - 1);
   }
 }
 </script>

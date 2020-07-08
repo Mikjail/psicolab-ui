@@ -6,9 +6,10 @@
       <div class="container">
         <QuestionMap
           :totalQuestions="totalQuestions"
-          :questionsAnswered="questionsSelected"  />
+          :questionsAnswered="questionsSelected"
+           v-on:onChangeQuestion="onChangeQuestion"  />
           <div class="row justify-content-center">
-            <div class="col-9">
+            <div class="col-12 col-xl-9 col-lg-9">
               <VerbalTest
               :currentQuestion="currentQuestion"
               :currentPage="currentPage"
@@ -17,11 +18,11 @@
             </div>
           </div>
           <div class="row justify-content-center">
-            <div class="col-12 col-xl-9">
+            <div class="col-12 col-xl-9 col-lg-9">
               <FooterNav
                 :currentPage="currentPage"
                 :totalQuestions="totalQuestions"
-                v-on:onChangePage="onChangePage" />
+                v-on:onChangeQuestion="onChangeQuestion" />
             </div>
           </div>
       </div>
@@ -78,13 +79,11 @@ export default class VerbalReasoning extends Vue {
   }
 
   questionAsnwered(questionSelected: any) {
-    console.log('uepale');
-    console.log(questionSelected);
     this.questionsSelected = questionSelected;
     this.totalAnswers = Object.keys(questionSelected).length;
   }
 
-  onChangePage(page: number) {
+  onChangeQuestion(page: number) {
     this.currentPage = page;
   }
 }
