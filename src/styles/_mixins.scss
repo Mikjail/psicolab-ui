@@ -46,6 +46,12 @@
     transition: 0.5s;
     border: 2px solid $primary-light;
   }
+  &:visited,
+  &:focus {
+    background-color: $primary;
+    border-color: $primary-light;
+    box-shadow: none;
+  }
 }
 
 @mixin shadow-panel-secondary {

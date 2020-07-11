@@ -38,4 +38,12 @@ body{
    background-color: white;
   }
 }
+
+.primary-btn{
+ @include btn-primary;
+}
+
+.primary-outline-btn{
+ @include btn-outline-primary;
+}
 </style>

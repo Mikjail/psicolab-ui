@@ -35,15 +35,42 @@
           class="btn verbal-reasoning-intro__test__example-btn">
           Ejemplo
         </button>
-        <button
+        <b-button
           :class="{disabled : !exampleCompleted}"
-          class="btn verbal-reasoning-intro__test__test-btn"
-          @click="onStartTest()">
+          class="btn verbal-reasoning-intro__test__test-btn btn-primary"
+          @click="showModal = !showModal">
           Comenzar Test
-        </button>
+        </b-button>
       </div>
     </div>
   </div>
+  <b-modal
+    class="verbal-reasoning-intro__modal"
+    v-model="showModal"
+    size="lg"
+    centered
+    title="Antes de Comenzar!">
+      <p class="my-4">
+        La prueba tiene una duración de 30 minutos, y no podrá repetirla.
+        Por lo tanto, antes de comenzar asegúrese de encontrarse en un lugar tranquilo,
+        con buena conexión a internet, y donde pueda concentrarse sin distracciones.
+      </p>
+      <template v-slot:modal-footer>
+        <div class="verbal-reasoning-intro__modal__footer w-100">
+           <button
+            class="btn primary-outline-btn verbal-reasoning-intro__modal__footer__cancel"
+            @click="showModal=false">
+            Cancelar
+          </button>
+          <button
+            class="btn primary-btn verbal-reasoning-intro__modal__footer__start"
+            @click="onStartTest"
+          >
+            Comenzar
+          </button>
+        </div>
+      </template>
+  </b-modal>
 </div>
 </template>
 <script lang="ts">
@@ -54,8 +81,10 @@ import { ViewMode } from './index.vue';
 export default class VerbalReasoning extends Vue {
   exampleCompleted = true;
 
+  showModal= false;
+
   onStartTest() {
-    console.log('entro aca');
+    this.showModal = false;
     this.$emit('onViewChanged', ViewMode.TEST);
   }
 }
@@ -92,6 +121,19 @@ export default class VerbalReasoning extends Vue {
     &__test-btn {
       @include btn-primary;
       margin-top: 32px;
+    }
+  }
+  &__modal{
+    &__footer{
+      display:flex;
+      justify-content: flex-end;
+      &__cancel,
+      &__start {
+        height: 34px;
+      }
+      &__cancel{
+        margin-right: 16px;
+      }
     }
   }
 }
