@@ -37,7 +37,7 @@
 import {
   Vue, Prop, Component, Watch,
 } from 'vue-property-decorator';
-import { VerbalReasoningDetail } from '../views/VerbalReasoning.vue';
+import { VerbalReasoningDetail } from '@/views/VerbalReasoning/VerbalReasoningTest.vue';
 
 @Component
 export default class VerbalTest extends Vue {

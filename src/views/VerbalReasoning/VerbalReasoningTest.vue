@@ -1,5 +1,5 @@
 <template>
-  <div class="verbal-reasoning">
+  <div class="verbal-reasoning-test">
     <NavBar
       :totalQuestions="totalQuestions"
       :totalAnswers="totalAnswers" />
@@ -30,19 +30,19 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import NavBar from '@/components/NavBar.vue';
-import VerbalTest from '@/components/VerbalTest.vue';
-import FooterNav from '@/components/FooterNav.vue';
-import QuestionMap from '@/components/QuestionMap.vue';
+import NavBar from '@/components/common/NavBar.vue';
+import FooterNav from '@/components/common/FooterNav.vue';
+import QuestionMap from '@/components/VerbalReasoning/QuestionMap.vue';
+import VerbalTest from '@/components/VerbalReasoning/VerbalTest.vue';
 // eslint-disable-next-line
-import testData from '../assets/data/verbal-reasoning.json';
+import testData from '../../assets/data/verbal-reasoning.json';
 
 @Component({
   components: {
     NavBar, VerbalTest, FooterNav, QuestionMap,
   },
 })
-export default class VerbalReasoning extends Vue {
+export default class VerbalReasoningTest extends Vue {
   testData: Array<VerbalReasoningDetail> = [] ;
 
   totalPages = 1;
@@ -98,7 +98,7 @@ export interface VerbalReasoningDetail {
 }
 </script>
 <style lang="scss">
-  .verbal-reasoning{
+  .verbal-reasoning-test{
       padding-top: 180px;
     &__nav-btns{
       display:flex;

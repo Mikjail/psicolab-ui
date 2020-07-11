@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import Home from '../views/Home.vue';
-import VerbalReasoning from '../views/VerbalReasoning.vue';
+import VerbalReasoning from '../views/VerbalReasoning/index.vue';
 
 Vue.use(VueRouter);
 

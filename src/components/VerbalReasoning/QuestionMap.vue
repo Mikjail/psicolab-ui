@@ -115,7 +115,7 @@ export default class QuestionMap extends Vue {
         margin-right: 8px;
       }
       &__icon{
-        background: url('../assets/watch.svg') no-repeat;
+        background: url('../../assets/watch.svg') no-repeat;
         height: 30px;
         width: 30px;
         position: relative;
