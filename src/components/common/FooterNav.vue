@@ -1,12 +1,12 @@
 <template>
   <div class="footer-nav__nav-btns">
       <button class="footer-nav__nav-btns__back btn"
-        v-if="!isFirstPage"
+        :disabled="isFirstPage"
         @click="onBack()">
         Volver
       </button>
       <button class="footer-nav__nav-btns__next btn"
-        v-if="!isLastPage"
+        :disabled="isLastPage"
         @click="onNext()">
         Siguiente
       </button>
@@ -40,7 +40,6 @@ export default class FooterNav extends Vue {
 </script>
 <style lang="scss">
   .footer-nav{
-      padding-top: 180px;
     &__nav-btns{
       margin-top: 120px;
       button{

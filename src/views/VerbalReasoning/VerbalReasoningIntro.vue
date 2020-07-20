@@ -31,12 +31,13 @@
             Una vez termines la prueba ejemplo, puedes empezar el test!
         </div>
         <button
-          :class="{disabled : exampleCompleted}"
-          class="btn verbal-reasoning-intro__test__example-btn">
+          :disabled="exampleCompleted"
+          class="btn verbal-reasoning-intro__test__example-btn"
+          @click="onStartTest(viewMode.EXAMPLE_TEST)">
           Ejemplo
         </button>
         <b-button
-          :class="{disabled : !exampleCompleted}"
+          :disabled="!exampleCompleted"
           class="btn verbal-reasoning-intro__test__test-btn btn-primary"
           @click="showModal = !showModal">
           Comenzar Test
@@ -64,7 +65,7 @@
           </button>
           <button
             class="btn primary-btn verbal-reasoning-intro__modal__footer__start"
-            @click="onStartTest"
+            @click="onStartTest(viewMode.test)"
           >
             Comenzar
           </button>
@@ -79,13 +80,15 @@ import { ViewMode } from './index.vue';
 
 @Component
 export default class VerbalReasoning extends Vue {
-  exampleCompleted = true;
+  exampleCompleted = false;
 
   showModal= false;
 
-  onStartTest() {
+  viewMode = ViewMode;
+
+  onStartTest(vieMode: ViewMode) {
     this.showModal = false;
-    this.$emit('onViewChanged', ViewMode.TEST);
+    this.$emit('onViewChanged', vieMode);
   }
 }
 </script>

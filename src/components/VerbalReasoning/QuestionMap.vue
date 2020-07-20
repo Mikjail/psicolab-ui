@@ -1,8 +1,13 @@
 <template>
   <div class="question-map">
     <div class="question-map__timer">
-        <span class="question-map__timer__time">
+        <span class="question-map__timer__time"
+          v-if="timeStarted">
           {{minutes}}:{{seconds}}
+        </span>
+        <span class="question-map__timer__time"
+          v-if="!timeStarted">
+            -- : --
         </span>
         <span class="question-map__timer__icon"></span>
       </div>
@@ -36,23 +41,26 @@
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator';
+import {
+  Vue, Component, Prop, Watch,
+} from 'vue-property-decorator';
 
 @Component
 export default class QuestionMap extends Vue {
   @Prop({ required: true, default: 1 }) totalQuestions!: number;
 
-  @Prop({ required: true, default: 1 }) questionsAnswered!: any;
+  @Prop({ required: true, default: 1 }) questionsAnswered!: {[key: string]: string};
+
+  @Prop({ required: false, default: false }) timeStarted!: boolean;
 
   deadline!: Date;
 
   currentTime = 0;
 
   mounted() {
-    const time = new Date();
-    this.deadline = new Date();
-    this.deadline.setTime(time.getTime() + (30 * 60 * 1000));
-    this.countDown();
+    if (this.timeStarted) {
+      this.initTimeAndCountDown();
+    }
   }
 
   get firstRow() {
@@ -69,7 +77,22 @@ export default class QuestionMap extends Vue {
   }
 
   get minutes() {
-    return Math.floor((this.currentTime / 1000 / 60) % 60);
+    const time = Math.floor((this.currentTime / 1000 / 60) % 60);
+    return time < 10 ? `0${time}` : time;
+  }
+
+  @Watch('timeStarted')
+  onTimeStarted() {
+    if (this.timeStarted) {
+      this.initTimeAndCountDown();
+    }
+  }
+
+  initTimeAndCountDown() {
+    const time = new Date();
+    this.deadline = new Date();
+    this.deadline.setTime(time.getTime() + (30 * 60 * 1000));
+    this.countDown();
   }
 
   countDown() {

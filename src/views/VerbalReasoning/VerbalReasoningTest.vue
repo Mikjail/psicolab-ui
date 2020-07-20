@@ -18,7 +18,7 @@
             </div>
           </div>
           <div class="row justify-content-center">
-            <div class="col-12 col-xl-9 col-lg-9">
+            <div class="footer-nav col-12 col-xl-9 col-lg-9">
               <FooterNav
                 :currentPage="currentPage"
                 :totalQuestions="totalQuestions"
@@ -29,13 +29,11 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 import NavBar from '@/components/common/NavBar.vue';
 import FooterNav from '@/components/common/FooterNav.vue';
 import QuestionMap from '@/components/VerbalReasoning/QuestionMap.vue';
 import VerbalTest from '@/components/VerbalReasoning/VerbalTest.vue';
-// eslint-disable-next-line
-import testData from '../../assets/data/verbal-reasoning.json';
 
 @Component({
   components: {
@@ -43,7 +41,7 @@ import testData from '../../assets/data/verbal-reasoning.json';
   },
 })
 export default class VerbalReasoningTest extends Vue {
-  testData: Array<VerbalReasoningDetail> = [] ;
+  @Prop({ required: true, default: [] }) testData!: Array<VerbalReasoningDetail>;
 
   totalPages = 1;
 
@@ -58,14 +56,6 @@ export default class VerbalReasoningTest extends Vue {
   questionsSelected = {};
 
   mounted() {
-    this.testData = testData.map((data: VerbalReasoningDetail) => {
-      const newData = data;
-      newData.alternatives = data.alternatives.map((alt: any) => ({
-        answer: alt.answer.split('-'),
-        id: alt.id,
-      }));
-      return newData;
-    });
     this.totalPages = Math.ceil(this.testData.length / this.pageSize);
     this.totalQuestions = this.testData.length;
   }

@@ -1,0 +1,18 @@
+.disabled {
+  @include disabled;
+}
+
+.primary-btn{
+  @include btn-primary;
+ }
+ 
+ .primary-outline-btn{
+  @include btn-outline-primary;
+ }
+
+ .primary-sm-btn {
+  @include btn-primary;
+  min-width: 85px;
+  height: 28px;
+  font-size: 13px;
+ }

@@ -1,0 +1,61 @@
+[
+  {
+    "id": "1",
+    "points": "",
+    "category": "Verbal_Reasoning",
+    "description": "es a manteca como café es a",
+    "alternatives": [
+      {
+        "id": "a",
+        "answer": "pan - verter"
+      },
+      {
+        "id": "b",
+        "answer": "vaca - leche"
+      },
+      {
+        "id": "c",
+        "answer": "pan - leche"
+      },
+      {
+        "id": "d",
+        "answer": "pan - caliente"
+      },
+      {
+        "id": "e",
+        "answer":"engordar - crema"
+      }
+    ],
+    "correct_answer": "c"
+  },
+  {
+    "id": "2",
+    "points": "",
+    "category": "Verbal_Reasoning",
+    "description": "es a masculino como mujer es a",
+    "alternatives": [
+      {
+        "id": "a",
+        "answer": "hombre - señora"
+      },
+      {
+        "id": "b",
+        "answer": "maligno - femenino"
+      },
+      {
+        "id": "c",
+        "answer": "maligno - muchacha"
+      },
+      {
+        "id": "d",
+        "answer": "hombre - femenino"
+      },
+      
+      {
+        "id": "e",
+        "answer": "hombre - jovencita"
+      }
+    ],
+    "correct_answer": "d"
+  }
+]
