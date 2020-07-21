@@ -33,7 +33,7 @@
         <button
           :disabled="exampleCompleted"
           class="btn verbal-reasoning-intro__test__example-btn"
-          @click="onStartTest(viewMode.EXAMPLE_TEST)">
+          @click="onStartTest(viewMode.EXAMPLE)">
           Ejemplo
         </button>
         <b-button

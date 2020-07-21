@@ -4,33 +4,37 @@
         v-if="viewMode === viewType.INTRO">
         <VerbalReasoningIntro v-on:onViewChanged="onViewChanged" />
       </div>
-      <VerbalReasoningTest
-      v-if="viewMode === viewType.TEST &&
-      testData.length > 0"
-      :testData="testData"/>
 
-      <VerbalReasoningExample  v-if="viewMode === viewType.EXAMPLE_TEST &&
-      testData.length > 0"
-      :testData="testData" />
+      <ComponentTour
+      v-if="viewMode === viewType.EXAMPLE &&
+      testData.length > 0 &&
+      !timeStarted"
+      :testData="testData"
+      v-on:onStartTest="onStartTest" />
+
+      <VerbalReasoningTest
+      v-if="testData.length > 0"
+      :timeStarted="timeStarted"
+      :testData="testData"/>
   </div>
 </template>
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator';
+import ComponentTour from '@/components/VerbalReasoning/ComponentTour.vue';
 import VerbalReasoningTest, { VerbalReasoningDetail } from './VerbalReasoningTest.vue';
 import VerbalReasoningIntro from './VerbalReasoningIntro.vue';
-import VerbalReasoningExample from './VerbalReasoningExmple.vue';
 
 import testData from '../../assets/data/verbal-reasoning.json';
 import exampleData from '../../assets/data/example-test.json';
 
 export enum ViewMode {
   INTRO = 'intro',
-  EXAMPLE_TEST = 'example_text',
+  EXAMPLE = 'example',
   TEST = 'test',
   SUMMARY = 'summary'
 }
 
-@Component({ components: { VerbalReasoningTest, VerbalReasoningIntro, VerbalReasoningExample } })
+@Component({ components: { VerbalReasoningTest, VerbalReasoningIntro, ComponentTour } })
 export default class VerbalReasoning extends Vue {
   testData: Array<VerbalReasoningDetail> = [];
 
@@ -38,8 +42,9 @@ export default class VerbalReasoning extends Vue {
 
   viewMode = this.viewType.INTRO;
 
+  timeStarted = false;
+
   onViewChanged(view: ViewMode) {
-    console.log(view);
     this.viewMode = view;
   }
 
@@ -59,6 +64,10 @@ export default class VerbalReasoning extends Vue {
       }));
       return newData;
     });
+  }
+
+  onStartTest() {
+    this.timeStarted = true;
   }
 }
 

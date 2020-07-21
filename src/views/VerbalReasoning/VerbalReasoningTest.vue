@@ -7,7 +7,8 @@
         <QuestionMap
           :totalQuestions="totalQuestions"
           :questionsAnswered="questionsSelected"
-           v-on:onChangeQuestion="onChangeQuestion"  />
+          :timeStarted="timeStarted"
+           v-on:onChangeQuestion="onChangeQuestion"/>
           <div class="row justify-content-center">
             <div class="col-12 col-xl-9 col-lg-9">
               <VerbalTest
@@ -42,6 +43,8 @@ import VerbalTest from '@/components/VerbalReasoning/VerbalTest.vue';
 })
 export default class VerbalReasoningTest extends Vue {
   @Prop({ required: true, default: [] }) testData!: Array<VerbalReasoningDetail>;
+
+  @Prop({ required: true, default: false }) timeStarted!: boolean;
 
   totalPages = 1;
 

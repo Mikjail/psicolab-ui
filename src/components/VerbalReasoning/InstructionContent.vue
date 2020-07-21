@@ -4,17 +4,19 @@
     <button
     @click="onOk"
     class="btn primary-sm-btn vr-example__shadow__panel-instruction__okey">
-            Ok!
+            {{okText}}
     </button>
   </div>
 </template>
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Prop } from 'vue-property-decorator';
 
 @Component
 export default class InstructionContent extends Vue {
+  @Prop({ default: 'Ok!' }) okText!: string;
+
   onOk() {
-    this.$emit('onOk');
+    this.$emit('onNextTip');
   }
 }
 
