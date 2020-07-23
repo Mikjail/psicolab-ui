@@ -1,12 +1,12 @@
 <template>
   <div class="footer-nav__nav-btns">
       <button class="footer-nav__nav-btns__back btn"
-        :disabled="isFirstPage"
+        :disabled="isFirstPage || !timeStarted"
         @click="onBack()">
         Volver
       </button>
       <button class="footer-nav__nav-btns__next btn"
-        :disabled="isLastPage"
+        :disabled="isLastPage || !timeStarted"
         @click="onNext()">
         Siguiente
       </button>
@@ -17,6 +17,8 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component
 export default class FooterNav extends Vue {
+  @Prop({ required: true, default: false }) timeStarted!: boolean;
+
   @Prop({ required: true, default: 1 }) currentPage!: number;
 
   @Prop({ required: true, default: 1 }) totalQuestions!: number;

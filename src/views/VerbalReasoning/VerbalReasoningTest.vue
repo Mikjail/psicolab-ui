@@ -21,6 +21,7 @@
           <div class="row justify-content-center">
             <div class="footer-nav col-12 col-xl-9 col-lg-9">
               <FooterNav
+                :timeStarted="timeStarted"
                 :currentPage="currentPage"
                 :totalQuestions="totalQuestions"
                 v-on:onChangeQuestion="onChangeQuestion" />
@@ -56,7 +57,7 @@ export default class VerbalReasoningTest extends Vue {
 
   totalQuestions = 0;
 
-  questionsSelected = {};
+  questionsSelected: any = {};
 
   mounted() {
     this.totalPages = Math.ceil(this.testData.length / this.pageSize);
@@ -73,7 +74,14 @@ export default class VerbalReasoningTest extends Vue {
 
   questionAsnwered(questionSelected: any) {
     this.questionsSelected = questionSelected;
-    this.totalAnswers = Object.keys(questionSelected).length;
+    let totalAns = 0;
+    Object.keys(questionSelected)
+      .forEach((index: string) => {
+        if (questionSelected[index]) {
+          totalAns += 1;
+        }
+      });
+    this.totalAnswers = totalAns;
   }
 
   onChangeQuestion(page: number) {

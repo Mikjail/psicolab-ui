@@ -20,7 +20,9 @@
                     v-model="questionSelected[currentQuestion.id]"
                     :value="`${currentQuestion.id}_${option.id}`"
                     :id="`${currentQuestion.id}_${option.id}`"
-                    type="radio"/>
+                    type="radio"
+                    @change="onChange"
+                    @click="onCheck(currentQuestion.id)"/>
                   <label
                     :for="`${currentQuestion.id}_${option.id}`">
                     {{option.answer[0]}}
@@ -49,13 +51,34 @@ export default class VerbalTest extends Vue {
 
   questionSelected: any = {};
 
+  prevSelection: any = {}
+
   @Watch('questionSelected')
   onMssgesChanged() {
     this.questionAnswered();
   }
 
   questionAnswered() {
+    this.prevSelection = this.questionSelected;
+  }
+
+  onChange() {
     this.$emit('questionAsnwered', this.questionSelected);
+  }
+
+  onCheck(questionId: string) {
+    if (this.prevSelection[questionId] &&
+    this.questionSelected[questionId] &&
+    this.prevSelection[questionId] === this.questionSelected[questionId]) {
+      this.$nextTick(() => {
+        this.$set(this.questionSelected, questionId, false);
+        this.$emit('questionAsnwered', this.questionSelected);
+      });
+    } else {
+      this.$nextTick(() => {
+        this.$set(this.prevSelection, questionId, this.questionSelected[questionId]);
+      });
+    }
   }
 }
 </script>
