@@ -8,6 +8,7 @@
           :totalQuestions="totalQuestions"
           :questionsAnswered="questionsSelected"
           :timeStarted="timeStarted"
+          :viewMode="viewMode"
            v-on:onChangeQuestion="onChangeQuestion"/>
           <div class="row justify-content-center">
             <div class="col-12 col-xl-9 col-lg-9">
@@ -36,6 +37,7 @@ import NavBar from '@/components/common/NavBar.vue';
 import FooterNav from '@/components/common/FooterNav.vue';
 import QuestionMap from '@/components/VerbalReasoning/QuestionMap.vue';
 import VerbalTest from '@/components/VerbalReasoning/VerbalTest.vue';
+import { ViewMode } from './index.vue';
 
 @Component({
   components: {
@@ -46,6 +48,10 @@ export default class VerbalReasoningTest extends Vue {
   @Prop({ required: true, default: [] }) testData!: Array<VerbalReasoningDetail>;
 
   @Prop({ required: true, default: false }) timeStarted!: boolean;
+
+  @Prop({ required: true, default: true })
+
+  @Prop({ required: true, default: 'EXAMPLE' }) viewMode!: ViewMode;
 
   totalPages = 1;
 

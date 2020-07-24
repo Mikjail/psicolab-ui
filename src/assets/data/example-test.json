@@ -3,27 +3,27 @@
     "id": "1",
     "points": "",
     "category": "Verbal_Reasoning",
-    "description": "es a manteca como café es a",
+    "description": "es a agua como comer es a",
     "alternatives": [
       {
         "id": "a",
-        "answer": "pan - verter"
+        "answer": "continuar - empujar"
       },
       {
         "id": "b",
-        "answer": "vaca - leche"
+        "answer": "pie - enemigo"
       },
       {
         "id": "c",
-        "answer": "pan - leche"
+        "answer": "beber - alimento"
       },
       {
         "id": "d",
-        "answer": "pan - caliente"
+        "answer": "muchacha - industria"
       },
       {
         "id": "e",
-        "answer":"engordar - crema"
+        "answer":"beber - enemigo"
       }
     ],
     "correct_answer": "c"
@@ -32,28 +32,58 @@
     "id": "2",
     "points": "",
     "category": "Verbal_Reasoning",
-    "description": "es a masculino como mujer es a",
+    "description": "es a noche como desayuno es a",
     "alternatives": [
       {
         "id": "a",
-        "answer": "hombre - señora"
+        "answer": "cena - esquina"
       },
       {
         "id": "b",
-        "answer": "maligno - femenino"
+        "answer": "suave - mañana"
       },
       {
         "id": "c",
-        "answer": "maligno - muchacha"
+        "answer": "puerta - esquina"
       },
       {
         "id": "d",
-        "answer": "hombre - femenino"
+        "answer": "flujo - disfrutar"
       },
       
       {
         "id": "e",
-        "answer": "hombre - jovencita"
+        "answer": "cena - mañana"
+      }
+    ],
+    "correct_answer": "d"
+  },
+  {
+    "id": "3",
+    "points": "",
+    "category": "Verbal_Reasoning",
+    "description": "es a uno como segundo es a",
+    "alternatives": [
+      {
+        "id": "a",
+        "answer": "dos - medio"
+      },
+      {
+        "id": "b",
+        "answer": "primero - fuego"
+      },
+      {
+        "id": "c",
+        "answer": "reina - colina"
+      },
+      {
+        "id": "d",
+        "answer": "primero - dos"
+      },
+      
+      {
+        "id": "e",
+        "answer": "lluvia - fuego"
       }
     ],
     "correct_answer": "d"

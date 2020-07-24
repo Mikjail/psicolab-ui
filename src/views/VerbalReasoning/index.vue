@@ -13,6 +13,7 @@
       v-on:onStartTest="onStartTest" />
 
       <VerbalReasoningTest
+      :viewMode="viewMode"
       v-if="testData.length > 0"
       :timeStarted="timeStarted"
       :testData="testData"/>

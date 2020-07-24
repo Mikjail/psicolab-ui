@@ -16,7 +16,21 @@
           Preguntas
         </span>
       </div>
-      <div class="question-map__list">
+      <div class="question-map__list"
+        v-if="viewMode === viewType.EXAMPLE">
+          <div class="question-map__list__row-example">
+             <button
+              class="btn"
+              :class="{ answered : questionsAnswered[index]}"
+              @click="onNavigateTo(index)"
+              v-for="index in totalQuestions"
+              :key="index">
+                  {{index}}
+              </button>
+          </div>
+      </div>
+      <div class="question-map__list"
+        v-if="viewMode === viewType.TEST">
         <div class="question-map__list__row-1">
           <button
           class="btn"
@@ -44,6 +58,7 @@
 import {
   Vue, Component, Prop, Watch,
 } from 'vue-property-decorator';
+import { ViewMode } from '@/views/VerbalReasoning/index.vue';
 
 @Component
 export default class QuestionMap extends Vue {
@@ -52,6 +67,10 @@ export default class QuestionMap extends Vue {
   @Prop({ required: true, default: 1 }) questionsAnswered!: {[key: string]: string};
 
   @Prop({ required: false, default: false }) timeStarted!: boolean;
+
+  @Prop({ required: true, default: '' }) viewMode!: ViewMode;
+
+  viewType = ViewMode;
 
   deadline!: Date;
 
@@ -68,7 +87,7 @@ export default class QuestionMap extends Vue {
   }
 
   get secondRow() {
-    return Math.round(this.totalQuestions / 2);
+    return Math.floor(this.totalQuestions / 2);
   }
 
   get seconds() {
@@ -167,6 +186,10 @@ export default class QuestionMap extends Vue {
       &__row-2{
         display:flex;
         flex-direction: column;
+      }
+      &__row-1,
+      &__row-2,
+      &__row-example {
         button{
           @include btn-outline-primary;
           min-width: 10px !important;
@@ -179,6 +202,16 @@ export default class QuestionMap extends Vue {
           &.answered{
             background: $primary;
             color: white;
+          }
+        }
+      }
+      &__row-example {
+        width: 70px;
+        button{
+          display: inline-block;
+          margin-right: 10px;
+          &:nth-child(even){
+            margin-right: 0;
           }
         }
       }
