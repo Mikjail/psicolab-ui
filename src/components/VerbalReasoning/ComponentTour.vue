@@ -99,13 +99,15 @@ export default class ComponentTour extends Vue {
     this.tip += 1;
     const defaultIndex = '999';
     const upperIndex = '10001';
+    const stepAnswer = 'verbal__question-section__question-answer__answer';
     ComponentTour.customZIndex('navbar', defaultIndex);
     ComponentTour.customZIndex('question-map', defaultIndex);
     ComponentTour.customZIndex('footer-nav', defaultIndex);
     ComponentTour.customZIndex('verbal__question-section__question-answer__question', defaultIndex);
-    ComponentTour.customZIndex('verbal__question-section__question-answer__answer', defaultIndex);
+    ComponentTour.customZIndex(stepAnswer, defaultIndex);
     ComponentTour.customBoxShadow('verbal__question-section__question-answer__question', false);
-    ComponentTour.customBoxShadow('verbal__question-section__question-answer__answer', false);
+    ComponentTour.customBoxShadow(stepAnswer, false);
+    ComponentTour.removeClass(stepAnswer, 'step-question');
     switch (this.tip) {
       case 1:
         ComponentTour.customZIndex('navbar', upperIndex);
@@ -122,14 +124,10 @@ export default class ComponentTour extends Vue {
         ComponentTour.customBoxShadow('verbal__question-section__question-answer__question', true);
         break;
       case 6:
-        const className = 'verbal__question-section__question-answer__answer';
-        ComponentTour.customZIndex(className, upperIndex);
-        ComponentTour.customBoxShadow(className, true);
-        const element = (document.getElementsByClassName(className)[0]) as HTMLElement;
-        element.style.minHeight = '260px';
-        element.style.minWidth = '300px';
-        element.style.alignItems = 'center';
-        element.style.paddingTop = '15px';
+        ComponentTour.customZIndex(stepAnswer, upperIndex);
+        ComponentTour.customBoxShadow(stepAnswer, true);
+        const element = (document.getElementsByClassName(stepAnswer)[0]) as HTMLElement;
+        element.className += ' step-question';
         break;
       case 7:
         this.okText = 'Comenzar!';
@@ -155,9 +153,20 @@ export default class ComponentTour extends Vue {
       element.style.borderRadius = '0';
     }
   }
+
+  static removeClass(classElement: string, classToRemove: string) {
+    const element = (document.getElementsByClassName(classElement)[0]) as HTMLElement;
+    element.classList.remove(classToRemove);
+  }
 }
 </script>
 <style lang="scss">
+.step-question{
+  min-height: 260px;
+  min-width: 300px;
+  align-items: center !important;
+  padding-top: 15px;
+}
 .vr-example{
   &__shadow{
     background-color: white;
