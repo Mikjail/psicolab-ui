@@ -1,5 +1,6 @@
 <template>
-  <div class="verbal-reasoning-test">
+  <div class="verbal-reasoning-test"
+  :class="{'test-example': viewMode == viewType.EXAMPLE}">
     <NavBar
       :totalQuestions="totalQuestions"
       :totalAnswers="totalAnswers" />
@@ -22,7 +23,7 @@
           <div class="row justify-content-center">
             <div class="footer-nav col-12 col-xl-9 col-lg-9">
               <FooterNav
-                :timeStarted="isNavEnable"
+                :timeStarted="timeStarted"
                 :currentPage="currentPage"
                 :totalQuestions="totalQuestions"
                 v-on:onChangeQuestion="onChangeQuestion" />
@@ -107,12 +108,12 @@ export default class VerbalReasoningTest extends Vue {
     return this.testData.length;
   }
 
-  get isNavEnable() {
-    if (this.viewMode === this.viewType.EXAMPLE) {
-      return this.timeStarted && this.isAnswerCorrect;
-    }
-    return this.timeStarted;
-  }
+  // get isNavEnable() {
+  // if (this.viewMode === this.viewType.EXAMPLE) {
+  //   return this.timeStarted && this.isAnswerCorrect;
+  // }
+  //   return this.timeStarted;
+  // }
 
   questionAsnwered(questionSelected: any) {
     this.questionsSelected = questionSelected;
@@ -153,12 +154,17 @@ export interface VerbalReasoningDetail {
 <style lang="scss">
   .verbal-reasoning-test{
       padding-top: 180px;
+      &.test-example{
+        padding-top: 120px;
+      }
       &__answer-tip {
         border: 2px solid $primary;
         border-radius: 4px;
         padding: 10px;
+        background-color: $primary-light-2;
         &.incorrect{
           border-color: $secondary;
+          background-color: $secondary-light;
         }
         h6{
           text-align: center;

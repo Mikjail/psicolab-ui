@@ -204,12 +204,12 @@ export default class ComponentTour extends Vue {
         }
       }
       &.tip-3{
-        top: 700px;
+        top: 645px;
         float: right;
         right: 140px;
       }
       &.tip-4{
-        top: 700px;
+        top: 645px;
         bottom: -10px;
         float: left;
         left: 140px;
@@ -218,16 +218,20 @@ export default class ComponentTour extends Vue {
         }
       }
       &.tip-5{
-        top: 100px;
+        top: 500px;
         bottom: -10px;
         left: -130px;
       }
       &.tip-6{
-        top: 60px;
+        width: 500px;
+        top: 500px;
         bottom: -10px;
         right: -280px;
         height: auto;
-        padding-bottom: 25px;
+        padding-bottom: 35px;
+        button{
+          top: -3px;
+        }
       }
       &.tip-7{
         top: 200px;
