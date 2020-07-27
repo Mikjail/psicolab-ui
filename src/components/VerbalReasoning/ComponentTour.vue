@@ -104,7 +104,8 @@ export default class ComponentTour extends Vue {
     ComponentTour.customZIndex('footer-nav', defaultIndex);
     ComponentTour.customZIndex('verbal__question-section__question-answer__question', defaultIndex);
     ComponentTour.customZIndex('verbal__question-section__question-answer__answer', defaultIndex);
-
+    ComponentTour.customBoxShadow('verbal__question-section__question-answer__question', false);
+    ComponentTour.customBoxShadow('verbal__question-section__question-answer__answer', false);
     switch (this.tip) {
       case 1:
         ComponentTour.customZIndex('navbar', upperIndex);
@@ -118,9 +119,17 @@ export default class ComponentTour extends Vue {
         break;
       case 5:
         ComponentTour.customZIndex('verbal__question-section__question-answer__question', upperIndex);
+        ComponentTour.customBoxShadow('verbal__question-section__question-answer__question', true);
         break;
       case 6:
-        ComponentTour.customZIndex('verbal__question-section__question-answer__answer', upperIndex);
+        const className = 'verbal__question-section__question-answer__answer';
+        ComponentTour.customZIndex(className, upperIndex);
+        ComponentTour.customBoxShadow(className, true);
+        const element = (document.getElementsByClassName(className)[0]) as HTMLElement;
+        element.style.minHeight = '260px';
+        element.style.minWidth = '300px';
+        element.style.alignItems = 'center';
+        element.style.paddingTop = '15px';
         break;
       case 7:
         this.okText = 'Comenzar!';
@@ -134,6 +143,17 @@ export default class ComponentTour extends Vue {
   static customZIndex(className: string, zIndex: string) {
     const element = (document.getElementsByClassName(className)[0]) as HTMLElement;
     element.style.zIndex = zIndex;
+  }
+
+  static customBoxShadow(className: string, active: boolean) {
+    const element = (document.getElementsByClassName(className)[0]) as HTMLElement;
+    if (active) {
+      element.className += ' shadow-box';
+      element.style.borderRadius = '4px';
+    } else {
+      element.classList.remove('shadow-box');
+      element.style.borderRadius = '0';
+    }
   }
 }
 </script>
@@ -218,13 +238,13 @@ export default class ComponentTour extends Vue {
         }
       }
       &.tip-5{
-        top: 500px;
+        top: 550px;
         bottom: -10px;
         left: -130px;
       }
       &.tip-6{
         width: 500px;
-        top: 500px;
+        top: 550px;
         bottom: -10px;
         right: -280px;
         height: auto;

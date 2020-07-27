@@ -16,3 +16,7 @@
   height: 28px;
   font-size: 13px;
  }
+
+ .shadow-box {
+   @include shadow-panel;
+ }

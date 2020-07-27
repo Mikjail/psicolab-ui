@@ -108,13 +108,6 @@ export default class VerbalReasoningTest extends Vue {
     return this.testData.length;
   }
 
-  // get isNavEnable() {
-  // if (this.viewMode === this.viewType.EXAMPLE) {
-  //   return this.timeStarted && this.isAnswerCorrect;
-  // }
-  //   return this.timeStarted;
-  // }
-
   questionAsnwered(questionSelected: any) {
     this.questionsSelected = questionSelected;
     let totalAns = 0;
@@ -139,6 +132,7 @@ export default class VerbalReasoningTest extends Vue {
       this.showAnswerTip = false;
     }
     this.currentPage = page;
+    this.questionAsnwered(this.questionsSelected);
   }
 }
 
