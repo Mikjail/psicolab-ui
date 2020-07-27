@@ -37,13 +37,13 @@
 </template>
 <script lang="ts">
 import {
-  Vue, Prop, Component, Watch,
+  Vue, Prop, Component,
 } from 'vue-property-decorator';
 import { VerbalReasoningDetail } from '@/views/VerbalReasoning/VerbalReasoningTest.vue';
 
 @Component
 export default class VerbalTest extends Vue {
-  @Prop({ required: true }) currentQuestion!: Array<VerbalReasoningDetail>;
+  @Prop({ required: true }) currentQuestion!: VerbalReasoningDetail;
 
   @Prop({ required: true, default: 1 }) currentPage!: number;
 
@@ -53,16 +53,10 @@ export default class VerbalTest extends Vue {
 
   prevSelection: any = {}
 
-  @Watch('questionSelected')
-  onMssgesChanged() {
-    this.questionAnswered();
-  }
-
-  questionAnswered() {
-    this.prevSelection = this.questionSelected;
-  }
-
   onChange() {
+    this.$set(this.prevSelection,
+      this.currentQuestion.id,
+      this.questionSelected[this.currentQuestion.id]);
     this.$emit('questionAsnwered', this.questionSelected);
   }
 

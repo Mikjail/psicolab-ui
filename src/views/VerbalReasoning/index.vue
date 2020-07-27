@@ -52,7 +52,6 @@ export default class VerbalReasoning extends Vue {
   @Watch('viewMode')
   onViewModeChanged() {
     const questions = this.viewType.TEST === this.viewMode ? testData : exampleData;
-    console.log(questions);
     this.setTestData(questions);
   }
 
