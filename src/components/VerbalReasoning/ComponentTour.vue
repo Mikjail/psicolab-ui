@@ -7,13 +7,13 @@
               <InstructionContent
                :okText="okText"
                v-on:onNextTip="onNextTip">
-                <div v-if="tip === 1">
+                <div v-if="tip === 5">
                   <p>
                     <strong>Barra de progreso: </strong>
                     Te indica la cantidad de preguntas respondidas.
                   </p>
                 </div>
-                <div v-if="tip === 2">
+                <div v-if="tip === 6">
                   <p>
                     <strong>Mapa de preguntas: </strong>
                     Es una herramienta que puedes utilizar para navegar a cualquier pregunta
@@ -46,13 +46,13 @@
                     Boton para navegar a la pregunta anterior
                   </p>
                 </div>
-                <div v-if="tip === 5">
+                <div v-if="tip === 1">
                   <p>
                     <strong>Seccion de pregunta:</strong>
                     Todas las preguntas están ubicadas en esta sección.
                   </p>
                 </div>
-                <div v-if="tip === 6">
+                <div v-if="tip === 2">
                   <p>
                     <strong>Seccion de respuesta:</strong>
                     Todas las preguntas están ubicadas en esta sección.
@@ -109,21 +109,21 @@ export default class ComponentTour extends Vue {
     ComponentTour.customBoxShadow(stepAnswer, false);
     ComponentTour.removeClass(stepAnswer, 'step-question');
     switch (this.tip) {
-      case 1:
+      case 5:
         ComponentTour.customZIndex('navbar', upperIndex);
         break;
-      case 2:
+      case 6:
         ComponentTour.customZIndex('question-map', upperIndex);
         break;
       case 3:
       case 4:
         ComponentTour.customZIndex('footer-nav', upperIndex);
         break;
-      case 5:
+      case 1:
         ComponentTour.customZIndex('verbal__question-section__question-answer__question', upperIndex);
         ComponentTour.customBoxShadow('verbal__question-section__question-answer__question', true);
         break;
-      case 6:
+      case 2:
         ComponentTour.customZIndex(stepAnswer, upperIndex);
         ComponentTour.customBoxShadow(stepAnswer, true);
         const element = (document.getElementsByClassName(stepAnswer)[0]) as HTMLElement;
@@ -193,10 +193,10 @@ export default class ComponentTour extends Vue {
         top: -15px;
         position: relative;
       }
-      &.tip-1{
+      &.tip-5{
         margin-top: 8%;
       }
-      &.tip-2{
+      &.tip-6{
         height: auto;
         margin-top: 180px;
         padding-bottom: 0;
@@ -246,12 +246,12 @@ export default class ComponentTour extends Vue {
           top: 4px;
         }
       }
-      &.tip-5{
+      &.tip-1{
         top: 550px;
         bottom: -10px;
         left: -130px;
       }
-      &.tip-6{
+      &.tip-2{
         width: 500px;
         top: 550px;
         bottom: -10px;
