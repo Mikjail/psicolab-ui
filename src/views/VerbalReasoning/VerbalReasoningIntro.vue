@@ -23,6 +23,7 @@
           </div>
           <div class="verbal-reasoning-intro__text-preview__preview">
                 <img src="../../assets/verbal-reasoning.svg" alt="">
+                <p><strong>Duraction:</strong> 30min.</p>
           </div>
         </div>
       </div>
@@ -106,6 +107,7 @@ export default class VerbalReasoning extends Vue {
         padding-right: 40px;
       }
       &__preview{
+        text-align: center;
         img{
           width: 200px;
         }

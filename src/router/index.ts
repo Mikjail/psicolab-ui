@@ -4,6 +4,7 @@ import Home from '../views/Home.vue';
 import VerbalReasoning from '../views/VerbalReasoning/index.vue';
 import VerbalReasoningIntro from '../views/VerbalReasoning/VerbalReasoningIntro.vue';
 import VerbalReasoningTest from '../views/VerbalReasoning/VerbalReasoningTest.vue';
+import TestFinished from '../views/TestFinished.vue';
 
 Vue.use(VueRouter);
 
@@ -20,6 +21,7 @@ const routes: Array<RouteConfig> = [
       { path: '', component: VerbalReasoningIntro, name: 'Verbal Reasoning' },
       { path: 'example-test', component: VerbalReasoningTest },
       { path: 'test', component: VerbalReasoningTest },
+      { path: 'finished', component: TestFinished },
     ],
   },
 ];

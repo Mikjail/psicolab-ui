@@ -215,8 +215,12 @@ export default class VerbalReasoningTest extends Vue {
 
   onAcceptModal() {
     this.showFinishModal = false;
-    this.$emit('onTestExampleCompleted');
-    this.$router.push({ path: '/verbal-reasoning' });
+    if (this.viewMode === this.viewType.EXAMPLE) {
+      this.$emit('onTestExampleCompleted');
+      this.$router.push({ path: '/verbal-reasoning' });
+    } else {
+      this.$router.push({ path: '/verbal-reasoning/finished' });
+    }
   }
 }
 
