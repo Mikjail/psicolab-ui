@@ -2,11 +2,11 @@
   <div class="question-map">
     <div class="question-map__timer">
         <span class="question-map__timer__time"
-          v-if="timeStarted">
+          v-if="testStarted && viewMode === viewType.TEST">
           {{minutes}}:{{seconds}}
         </span>
         <span class="question-map__timer__time"
-          v-if="!timeStarted">
+          v-if="!testStarted || viewMode === viewType.EXAMPLE">
             -- : --
         </span>
         <span class="question-map__timer__icon"></span>
@@ -20,6 +20,7 @@
         v-if="viewMode === viewType.EXAMPLE">
           <div class="question-map__list__row-example">
              <button
+             :disabled="!testStarted"
               class="btn"
               :class="{ answered : questionsAnswered[index]}"
               @click="onNavigateTo(index)"
@@ -33,6 +34,7 @@
         v-if="viewMode === viewType.TEST">
         <div class="question-map__list__row-1">
           <button
+          :disabled="!testStarted"
           class="btn"
           :class="{ answered : questionsAnswered[index]}"
           @click="onNavigateTo(index)"
@@ -43,6 +45,7 @@
         </div>
         <div class="question-map__list__row-2">
           <button
+          :disabled="!testStarted"
           @click="onNavigateTo(secondRowNumber(index))"
           class="btn"
           :class="{ answered : questionsAnswered[secondRowNumber(index)]}"
@@ -66,7 +69,7 @@ export default class QuestionMap extends Vue {
 
   @Prop({ required: true, default: 1 }) questionsAnswered!: {[key: string]: string};
 
-  @Prop({ required: false, default: false }) timeStarted!: boolean;
+  @Prop({ required: false, default: false }) testStarted!: boolean;
 
   @Prop({ required: true, default: '' }) viewMode!: ViewMode;
 
@@ -77,7 +80,7 @@ export default class QuestionMap extends Vue {
   currentTime = 0;
 
   mounted() {
-    if (this.timeStarted) {
+    if (this.testStarted && this.viewMode !== this.viewType.EXAMPLE) {
       this.initTimeAndCountDown();
     }
   }
@@ -100,9 +103,9 @@ export default class QuestionMap extends Vue {
     return time < 10 ? `0${time}` : time;
   }
 
-  @Watch('timeStarted')
-  onTimeStarted() {
-    if (this.timeStarted) {
+  @Watch('testStarted')
+  ontestStarted() {
+    if (this.testStarted && this.viewMode !== this.viewType.EXAMPLE) {
       this.initTimeAndCountDown();
     }
   }
@@ -119,8 +122,8 @@ export default class QuestionMap extends Vue {
     if (this.currentTime > 0) {
       setTimeout(this.countDown, 1000);
     } else {
-      alert('Su tiempo ha finalizado');
       this.currentTime = 0;
+      this.$emit('onFinishTest', true);
     }
   }
 
@@ -195,6 +198,7 @@ export default class QuestionMap extends Vue {
           min-width: 10px !important;
           margin-bottom: 10px;
           padding: 0 !important;
+          min-height: 30px;
           width: 30px;
           height: 30px;
           font-size: 14px;

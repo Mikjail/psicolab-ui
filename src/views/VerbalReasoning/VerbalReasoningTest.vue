@@ -1,29 +1,39 @@
 <template>
   <div class="verbal-reasoning-test"
   :class="{'test-example': viewMode == viewType.EXAMPLE}">
+     <ComponentTour
+      v-if="viewMode === viewType.EXAMPLE &&
+      testData.length > 0 &&
+      !testStarted"
+      :testData="testData"
+      v-on:onStartTest="onStartTest" />
     <NavBar
       :totalQuestions="totalQuestions"
-      :totalAnswers="totalAnswers" />
+      :totalAnswers="totalAnswers"
+      :testStarted = "testStarted"
+      v-on:onFinishTest="onFinishTest" />
       <div class="container">
         <QuestionMap
           :totalQuestions="totalQuestions"
           :questionsAnswered="questionsSelected"
-          :timeStarted="timeStarted"
+          :testStarted="testStarted"
           :viewMode="viewMode"
-           v-on:onChangeQuestion="onChangeQuestion"/>
+           v-on:onChangeQuestion="onChangeQuestion"
+           v-on:onFinishTest="onFinishTest" />
           <div class="row justify-content-center">
             <div class="col-12 col-xl-9 col-lg-9">
               <VerbalTest
               :currentQuestion="currentQuestion"
               :currentPage="currentPage"
               :totalItems="testData.length"
+              :testStarted="testStarted"
               v-on:questionAsnwered="questionAsnwered" />
             </div>
           </div>
           <div class="row justify-content-center">
             <div class="footer-nav col-12 col-xl-9 col-lg-9">
               <FooterNav
-                :timeStarted="timeStarted"
+                :testStarted="testStarted"
                 :currentPage="currentPage"
                 :totalQuestions="totalQuestions"
                 v-on:onChangeQuestion="onChangeQuestion" />
@@ -53,6 +63,23 @@
             </div>
           </div>
       </div>
+      <ModalAlert
+      :showModal="showFinishModal"
+      :modalContent="finishTestModal"
+      v-on:onCancel="onCancelModal"
+      v-on:onAccept="onAcceptModal">
+        <div v-if="timeExpired">
+            <p>Usted respondió {{this.totalAnswers}} de {{this.totalQuestions}}</p>
+            <p> Muchas gracias por su participación! </p>
+        </div>
+        <p v-else-if="totalAnswers === totalQuestions">
+          ¿Está seguro que quiere finalizar el test?
+        </p>
+        <p v-else>
+          Usted tiene {{this.totalAnswers}} de {{this.totalQuestions}}
+          preguntas respondidas. ¿Está seguro que quiere finalizar el test?
+        </p>
+      </ModalAlert>
   </div>
 </template>
 <script lang="ts">
@@ -61,21 +88,25 @@ import NavBar from '@/components/common/NavBar.vue';
 import FooterNav from '@/components/common/FooterNav.vue';
 import QuestionMap from '@/components/VerbalReasoning/QuestionMap.vue';
 import VerbalTest from '@/components/VerbalReasoning/VerbalTest.vue';
+import ModalAlert from '@/components/common/ModalAlert.vue';
+import ComponentTour from '@/components/VerbalReasoning/ComponentTour.vue';
+
 import { ViewMode } from './index.vue';
+
+import testData from '../../assets/data/verbal-reasoning.json';
+import exampleData from '../../assets/data/example-test.json';
 
 @Component({
   components: {
-    NavBar, VerbalTest, FooterNav, QuestionMap,
+    NavBar, VerbalTest, FooterNav, QuestionMap, ModalAlert, ComponentTour,
   },
 })
 export default class VerbalReasoningTest extends Vue {
-  @Prop({ required: true, default: [] }) testData!: Array<VerbalReasoningDetail>;
+  testData: Array<VerbalReasoningDetail> = [];
 
-  @Prop({ required: true, default: false }) timeStarted!: boolean;
+  viewMode = ViewMode.EXAMPLE;
 
-  @Prop({ required: true, default: true })
-
-  @Prop({ required: true, default: 'EXAMPLE' }) viewMode!: ViewMode;
+  testStarted = false;
 
   viewType = ViewMode;
 
@@ -95,9 +126,23 @@ export default class VerbalReasoningTest extends Vue {
 
   isAnswerCorrect = false;
 
-  mounted() {
-    this.totalPages = Math.ceil(this.testData.length / this.pageSize);
-    this.totalQuestions = this.testData.length;
+  showFinishModal=false;
+
+  timeExpired = false;
+
+  finishTestModal = {
+    title: '',
+    content: '',
+    size: 'md',
+    acceptBtn: 'Aceptar',
+    cancelBtn: 'Cancelar',
+  }
+
+  beforeMount() {
+    const urlPath = this.$route.path.split('/');
+    this.viewMode = urlPath[urlPath.length - 1] as ViewMode;
+    const questions = this.viewType.TEST === this.viewMode ? testData : exampleData;
+    this.setTestData(JSON.parse(JSON.stringify(questions)));
   }
 
   get currentQuestion() {
@@ -106,6 +151,21 @@ export default class VerbalReasoningTest extends Vue {
 
   get totalRows() {
     return this.testData.length;
+  }
+
+  setTestData(vrReasonigQuestions: Array<VerbalReasoningDetail>) {
+    const vrData = vrReasonigQuestions;
+    this.testData = vrData.map((question: VerbalReasoningDetail) => {
+      const newData = question;
+      newData.alternatives = question.alternatives.map((alt: any) => ({
+        answer: alt.answer.split('-'),
+        id: alt.id,
+      }));
+      return newData;
+    });
+    this.totalPages = Math.ceil(this.testData.length / this.pageSize);
+    this.totalQuestions = this.testData.length;
+    this.testStarted = this.viewMode === this.viewType.TEST;
   }
 
   questionAsnwered(questionSelected: any) {
@@ -133,6 +193,30 @@ export default class VerbalReasoningTest extends Vue {
     }
     this.currentPage = page;
     this.questionAsnwered(this.questionsSelected);
+  }
+
+  onStartTest() {
+    this.testStarted = true;
+  }
+
+  onFinishTest() {
+    this.finishTestModal.title = 'Finalizar Test';
+    this.showFinishModal = true;
+  }
+
+  onEndedTime() {
+    this.finishTestModal.title = '¡Tiempo Finalizado!';
+    this.showFinishModal = true;
+  }
+
+  onCancelModal() {
+    this.showFinishModal = false;
+  }
+
+  onAcceptModal() {
+    this.showFinishModal = false;
+    this.$emit('onTestExampleCompleted');
+    this.$router.push({ path: '/verbal-reasoning' });
   }
 }
 

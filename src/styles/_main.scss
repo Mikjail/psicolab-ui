@@ -17,6 +17,19 @@
   font-size: 13px;
  }
 
+ .white-outline-btn{
+  @include btn-outline-primary;
+  width: 100%;
+  color: white;
+  border: 2px solid white;
+  &:hover{
+    color: white;
+    background: $primary;
+    transition: 0.5s;
+    border: 2px solid white;
+  }
+ }
+
  .shadow-box {
    @include shadow-panel;
  }

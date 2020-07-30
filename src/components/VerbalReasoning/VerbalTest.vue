@@ -17,6 +17,7 @@
                 <div v-for="option in currentQuestion.alternatives"
                 :key="`${currentQuestion.id}__${option.id}`">
                   <input
+                    :disabled="!testStarted"
                     v-model="questionSelected[currentQuestion.id]"
                     :value="`${currentQuestion.id}_${option.id}`"
                     :id="`${currentQuestion.id}_${option.id}`"
@@ -48,6 +49,8 @@ export default class VerbalTest extends Vue {
   @Prop({ required: true, default: 1 }) currentPage!: number;
 
   @Prop({ required: true, default: 1 }) totalItems!: number;
+
+  @Prop({ required: true, default: false }) testStarted!: boolean;
 
   questionSelected: any = {};
 

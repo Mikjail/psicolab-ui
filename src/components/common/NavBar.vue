@@ -17,6 +17,14 @@
           </div>
        </div>
     </div>
+    <div class="navbar__finish-btn">
+         <button
+          :disabled="!testStarted"
+          @click="onFinishTest"
+          class="btn white-outline-btn">
+            Finalizar Test
+         </button>
+    </div>
   </nav>
 </template>
 <script lang="ts">
@@ -37,8 +45,14 @@ export default class NavBar extends Vue {
 
   @Prop({ required: true, default: 0 }) totalAnswers!: number;
 
+  @Prop({ required: true, default: false }) testStarted!: boolean;
+
   get totalProgress() {
     return (this.totalAnswers / this.totalQuestions) * 100;
+  }
+
+  onFinishTest() {
+    this.$emit('onFinishTest');
   }
 }
 </script>
@@ -46,6 +60,11 @@ export default class NavBar extends Vue {
 .navbar{
   background-color: $primary;
   height: 72px;
+  &__finish-btn{
+    width: 130px !important;
+    position: absolute;
+    right: 10%;
+  }
   &__progress {
     display: flex;
     flex-direction: column;
@@ -71,6 +90,13 @@ export default class NavBar extends Vue {
         top: 2px;
         position: relative;
       }
+    }
+  }
+}
+@media only screen and(max-width: 1500px) {
+  .navbar{
+    &__finish-btn{
+      right: 12px;
     }
   }
 }
