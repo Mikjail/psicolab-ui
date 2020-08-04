@@ -17,6 +17,7 @@ module.exports = {
     'operator-linebreak': [2, 'after'],
     quotes: ['error', 'single'],
     'no-case-declarations': 0,
+    '@typescript-eslint/no-var-requires': 0,
   },
   overrides: [
     {
