@@ -88,7 +88,7 @@ body {
     display: flex;
     justify-content: center;
      a {
-      color: $black;
+      color: black;
       text-decoration: none;
   }
     &__test-panel {
