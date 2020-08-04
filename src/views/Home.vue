@@ -2,7 +2,7 @@
   <div class="dashboard">
     <div class="dashboard__welcome">
       <h1>Bienvenido {{user.name}}</h1>
-      <h3>Uset tiene
+      <h3>Usted tiene
           {{tests.length > 1 ? 'los siguientes tests' : 'el siguiente test'}}
           para completar:
       </h3>
