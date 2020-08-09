@@ -1,12 +1,6 @@
 <template>
   <div class="verbal-reasoning-test"
   :class="{'test-example': viewMode == viewType.EXAMPLE}">
-     <ComponentTour
-      v-if="viewMode === viewType.EXAMPLE &&
-      testData.length > 0 &&
-      !testStarted"
-      :testData="testData"
-      v-on:onStartTest="onStartTest" />
     <NavBar
       :totalQuestions="totalQuestions"
       :totalAnswers="totalAnswers"
@@ -89,7 +83,6 @@ import FooterNav from '@/components/common/FooterNav.vue';
 import QuestionMap from '@/components/VerbalReasoning/QuestionMap.vue';
 import VerbalTest from '@/components/VerbalReasoning/VerbalTest.vue';
 import ModalAlert from '@/components/common/ModalAlert.vue';
-import ComponentTour from '@/components/VerbalReasoning/ComponentTour.vue';
 
 import { ViewMode } from './index.vue';
 
@@ -98,7 +91,7 @@ import exampleData from '../../assets/data/example-test.json';
 
 @Component({
   components: {
-    NavBar, VerbalTest, FooterNav, QuestionMap, ModalAlert, ComponentTour,
+    NavBar, VerbalTest, FooterNav, QuestionMap, ModalAlert,
   },
 })
 export default class VerbalReasoningTest extends Vue {
@@ -106,7 +99,7 @@ export default class VerbalReasoningTest extends Vue {
 
   viewMode = ViewMode.EXAMPLE;
 
-  testStarted = false;
+  testStarted = true;
 
   viewType = ViewMode;
 
@@ -165,7 +158,6 @@ export default class VerbalReasoningTest extends Vue {
     });
     this.totalPages = Math.ceil(this.testData.length / this.pageSize);
     this.totalQuestions = this.testData.length;
-    this.testStarted = this.viewMode === this.viewType.TEST;
   }
 
   questionAsnwered(questionSelected: any) {

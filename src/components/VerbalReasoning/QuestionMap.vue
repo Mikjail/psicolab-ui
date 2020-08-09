@@ -1,6 +1,35 @@
 <template>
   <div class="question-map">
     <div class="question-map__timer">
+        <img
+        id="question-map-info"
+        src="../../assets/info-white.svg"
+        alt="">
+         <b-popover
+            custom-class="my-popover-class"
+            target="question-map-info"
+            triggers="hover"
+            placement="left">
+          <template v-slot:title>Mapa de preguntas</template>
+          <p>
+            Es una herramienta que puedes utilizar para navegar a cualquier pregunta
+            en especifico. También contiene la <strong> duración </strong> restante
+            de la prueba.
+          </p>
+          <p>
+            Como referencia, la pregunta sombreada se refiere a la pregunta respondida:
+          </p>
+          <ul>
+            <li>
+                <span class="tip-2__btn-answered">n</span>
+                <strong>Pregunta respondida</strong>
+            </li>
+            <li>
+                <span>n</span>
+              <strong>Pregunta no respondida</strong>
+            </li>
+        </ul>
+        </b-popover>
         <span class="question-map__timer__time"
           v-if="testStarted && viewMode === viewType.TEST">
           {{minutes}}:{{seconds}}
@@ -140,7 +169,7 @@ export default class QuestionMap extends Vue {
 <style lang="scss">
   .question-map{
     @include shadow-panel;
-    width: 120px;
+    width: 130px;
     height: 400px;
     border-radius: 4px;
     position: absolute;
@@ -149,21 +178,21 @@ export default class QuestionMap extends Vue {
     z-index:900;
     &__timer {
       display:flex;
-      justify-content: flex-end;
+      justify-content: space-between;
       align-items: center;
       background-color: $primary;
       height: 40px;
       color: white;
       font-weight: bold;
       padding: 0 10px;
-      &__time{
-        margin-right: 8px;
-      }
       &__icon{
         background: url('../../assets/watch.svg') no-repeat;
         height: 30px;
         width: 30px;
         position: relative;
+      }
+      img{
+        width: 20px;
       }
     }
     &__title{
@@ -220,6 +249,37 @@ export default class QuestionMap extends Vue {
         }
       }
     }
+  }
+  .my-popover-class{
+    h3{
+      background-color: $light-gray;
+    }
+    ul {
+        padding-left: 10px;
+        li {
+          list-style: none;
+          display: flex;
+          align-items: flex-end;
+          margin-bottom: 12px;
+          &:first-child{
+            span{
+              background-color: $primary;
+              color: white;
+            }
+          }
+          span{
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            border: 2px solid $primary;
+            border-radius: 4px;
+            margin-right: 4px;
+          }
+        }
+      }
   }
   @media only screen and (max-width: 1500px) {
     .question-map{

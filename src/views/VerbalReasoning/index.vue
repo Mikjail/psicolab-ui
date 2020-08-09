@@ -8,7 +8,6 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import ComponentTour from '@/components/VerbalReasoning/ComponentTour.vue';
 import VerbalReasoningTest from './VerbalReasoningTest.vue';
 import VerbalReasoningIntro from './VerbalReasoningIntro.vue';
 
@@ -19,7 +18,7 @@ export enum ViewMode {
   SUMMARY = 'summary'
 }
 
-@Component({ components: { VerbalReasoningTest, VerbalReasoningIntro, ComponentTour } })
+@Component({ components: { VerbalReasoningTest, VerbalReasoningIntro } })
 export default class VerbalReasoning extends Vue {
   testExampleCompleted=false;
 

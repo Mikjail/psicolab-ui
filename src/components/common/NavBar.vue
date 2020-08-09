@@ -7,12 +7,28 @@
                 <b-progress
                   :value="totalProgress"
                   class="w-100"> </b-progress>
-                  <p
-                  id="dropdown-list"
-                  class="navbar__progress__status"
-                  href="javascript:void(0)">
-                    {{totalAnswers}} de {{totalQuestions}} preguntas respondidas
-                  </p>
+                  <div class="navbar__progress__info">
+                    <p
+                      id="dropdown-list"
+                      class="navbar__progress__info__status"
+                      href="javascript:void(0)">
+                      {{totalAnswers}} de {{totalQuestions}} preguntas respondidas
+                    </p>
+                    <img
+                      id="status-progress-info"
+                      src="../../assets/info-white.svg"
+                      alt="">
+                    <b-popover
+                      custom-class="status-progress-info"
+                      target="status-progress-info"
+                      triggers="hover"
+                      placement="bottom">
+                        <template v-slot:title>
+                          Barra de progreso
+                        </template>
+                        <p>Te indica la cantidad de preguntas respondidas.</p>
+                    </b-popover>
+                  </div>
               </div>
           </div>
        </div>
@@ -76,21 +92,27 @@ export default class NavBar extends Vue {
       width: 100%;
       height: auto;
     }
-    &__status {
-      display:block;
-      margin-bottom:0;
-      color: white;
-      font-weight: bold;
-      margin-top: 4px;
-      &:after{
-        content: "";
-        display: inline-block;
-        width: 12px;
-        height: 12px;
-        top: 2px;
-        position: relative;
+    &__info {
+      display: flex;
+       &__status {
+        display:block;
+        margin-bottom:0;
+        color: white;
+        font-weight: bold;
+        margin-top: 4px;
+      }
+      img{
+        width: 20px;
+        margin-left: 10px;
+        padding-top: 5px;
       }
     }
+  }
+}
+
+.status-progress-info{
+  h3{
+    background-color: $light-gray;
   }
 }
 @media only screen and(max-width: 1500px) {
