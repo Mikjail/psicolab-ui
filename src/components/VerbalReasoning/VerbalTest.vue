@@ -7,6 +7,20 @@
           :id="`question-number-${currentPage}`">
             PREGUNTA {{currentPage}}/{{totalItems}}
           </div>
+          <div class="verbal__question-section__info">
+              <img
+                id="answer-section-info"
+                src="../../assets/info.svg"
+                alt="">
+                <b-popover
+                  custom-class="my-popover-class"
+                  target="answer-section-info"
+                  triggers="hover"
+                  placement="top">
+                <template v-slot:title>Seccion de respuestas</template>
+                <p>Dale click a la opción correcta!</p>
+                </b-popover>
+            </div>
           <div
           v-if="currentQuestion.description"
           class="verbal__question-section__question-answer">
@@ -87,12 +101,17 @@ export default class VerbalTest extends Vue {
   &__question-section {
     border-bottom: 0.5px solid $primary;
     transition: 1s;
-        &.selected{
-          @include shadow-panel-secondary;
-        }
-    &:last-of-type{
-      border-bottom: 0;
-    }
+      &__info{
+        text-align: right;
+        margin-top: 50px;
+        margin-bottom: 20px;
+      }
+      &.selected{
+        @include shadow-panel-secondary;
+      }
+      &:last-of-type{
+        border-bottom: 0;
+      }
       &__number{
         color: $secondary;
         font-weight: 500;
@@ -101,7 +120,6 @@ export default class VerbalTest extends Vue {
       &__question-answer{
         display:flex;
         justify-content: space-between;
-        margin-top: 80px;
         &__question{
           flex-basis: 68%;
         }
