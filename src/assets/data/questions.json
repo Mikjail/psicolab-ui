@@ -1,0 +1,352 @@
+[
+  {
+      "id": 1,
+      "points": 0,
+      "description": "es a manteca como café es a",
+      "testId": 1,
+      "correctAnswer": 3
+  },
+  {
+      "id": 2,
+      "points": 0,
+      "description": "es a masculino como mujer es a",
+      "testId": 1,
+      "correctAnswer": 9
+  },
+  {
+      "id": 3,
+      "points": 0,
+      "description": "es a caballo como chófer es a",
+      "testId": 1,
+      "correctAnswer": 12
+  },
+  {
+      "id": 4,
+      "points": 0,
+      "description": "es a colmillo como ciervo es a",
+      "testId": 1,
+      "correctAnswer": 18
+  },
+  {
+      "id": 5,
+      "points": 0,
+      "description": "es a animal como corteza es a",
+      "testId": 1,
+      "correctAnswer": 23
+  },
+  {
+      "id": 6,
+      "points": 0,
+      "description": "es a aire como canilla es a",
+      "testId": 1,
+      "correctAnswer": 26
+  },
+  {
+      "id": 7,
+      "points": 0,
+      "description": "es a carrera como lentitud es a",
+      "testId": 1,
+      "correctAnswer": 35
+  },
+  {
+      "id": 8,
+      "points": 0,
+      "description": "es a perro como Hereford es a",
+      "testId": 1,
+      "correctAnswer": 36
+  },
+  {
+      "id": 9,
+      "points": 0,
+      "description": "es a corcho como caja es a",
+      "testId": 1,
+      "correctAnswer": 41
+  },
+  {
+      "id": 10,
+      "points": 0,
+      "description": "es a segundo como día es a",
+      "testId": 1,
+      "correctAnswer": 49
+  },
+  {
+      "id": 11,
+      "points": 0,
+      "description": "es a tierra como armada es a",
+      "testId": 1,
+      "correctAnswer": 54
+  },
+  {
+      "id": 12,
+      "points": 0,
+      "description": "es a avión como garaje es a",
+      "testId": 1,
+      "correctAnswer": 58
+  },
+  {
+      "id": 13,
+      "points": 0,
+      "description": "es a rosbif como cerdo es a",
+      "testId": 1,
+      "correctAnswer": 62
+  },
+  {
+      "id": 14,
+      "points": 0,
+      "description": "es a seguir como detenerse es a",
+      "testId": 1,
+      "correctAnswer": 68
+  },
+  {
+      "id": 15,
+      "points": 0,
+      "description": "es a integrar como separar es a",
+      "testId": 1,
+      "correctAnswer": 75
+  },
+  {
+      "id": 16,
+      "points": 0,
+      "description": "es a pie como sombrero es a",
+      "testId": 1,
+      "correctAnswer": 79
+  },
+  {
+      "id": 17,
+      "points": 0,
+      "description": "es a máximo como peor es a",
+      "testId": 1,
+      "correctAnswer": 81
+  },
+  {
+      "id": 18,
+      "points": 0,
+      "description": "es a verso como escultor es a",
+      "testId": 1,
+      "correctAnswer": 87
+  },
+  {
+      "id": 19,
+      "points": 0,
+      "description": "es a ostra como diamante es a",
+      "testId": 1,
+      "correctAnswer": 93
+  },
+  {
+      "id": 20,
+      "points": 0,
+      "description": "es a Inglaterra como rublo es a",
+      "testId": 1,
+      "correctAnswer": 96
+  },
+  {
+      "id": 21,
+      "points": 0,
+      "description": "es a jardín como pared es a",
+      "testId": 1,
+      "correctAnswer": 103
+  },
+  {
+      "id": 22,
+      "points": 0,
+      "description": "es a vela como madera es a",
+      "testId": 1,
+      "correctAnswer": 107
+  },
+  {
+      "id": 23,
+      "points": 0,
+      "description": "es a tercero como quinto es a",
+      "testId": 1,
+      "correctAnswer": 111
+  },
+  {
+      "id": 24,
+      "points": 0,
+      "description": "es a caballería como pie es a",
+      "testId": 1,
+      "correctAnswer": 117
+  },
+  {
+      "id": 25,
+      "points": 0,
+      "description": "es a bandera como poste es a",
+      "testId": 1,
+      "correctAnswer": 125
+  },
+  {
+      "id": 26,
+      "points": 0,
+      "description": "es a tuerca como dedo es a",
+      "testId": 1,
+      "correctAnswer": 126
+  },
+  {
+      "id": 27,
+      "points": 0,
+      "description": "es a pesca como escopeta es a",
+      "testId": 1,
+      "correctAnswer": 135
+  },
+  {
+      "id": 28,
+      "points": 0,
+      "description": "es a médico como secretario es a",
+      "testId": 1,
+      "correctAnswer": 137
+  },
+  {
+      "id": 29,
+      "points": 0,
+      "description": "es a deber como derecho es a",
+      "testId": 1,
+      "correctAnswer": 145
+  },
+  {
+      "id": 30,
+      "points": 0,
+      "description": "es a archivo como revista es a",
+      "testId": 1,
+      "correctAnswer": 149
+  },
+  {
+      "id": 31,
+      "points": 0,
+      "description": "es a pantera como perro es a",
+      "testId": 1,
+      "correctAnswer": 153
+  },
+  {
+      "id": 32,
+      "points": 0,
+      "description": "es a tío como niño es a",
+      "testId": 1,
+      "correctAnswer": 158
+  },
+  {
+      "id": 33,
+      "points": 0,
+      "description": "es a doméstico como león es a",
+      "testId": 1,
+      "correctAnswer": 165
+  },
+  {
+      "id": 34,
+      "points": 0,
+      "description": "es a perder como triunfar es a",
+      "testId": 1,
+      "correctAnswer": 167
+  },
+  {
+      "id": 35,
+      "points": 0,
+      "description": "es a popa como babor es a",
+      "testId": 1,
+      "correctAnswer": 175
+  },
+  {
+      "id": 36,
+      "points": 0,
+      "description": "es a tren como peaje es a",
+      "testId": 1,
+      "correctAnswer": 177
+  },
+  {
+      "id": 37,
+      "points": 0,
+      "description": "es a franco como cumplidor es a",
+      "testId": 1,
+      "correctAnswer": 181
+  },
+  {
+      "id": 38,
+      "points": 0,
+      "description": "es a prohibir como confirmar es a",
+      "testId": 1,
+      "correctAnswer": 188
+  },
+  {
+      "id": 39,
+      "points": 0,
+      "description": "es a encima como cerca es a",
+      "testId": 1,
+      "correctAnswer": 194
+  },
+  {
+      "id": 40,
+      "points": 0,
+      "description": "es a castigar como olvidar es a",
+      "testId": 1,
+      "correctAnswer": 200
+  },
+  {
+      "id": 41,
+      "points": 0,
+      "description": "es a tripulación como asaltante es a",
+      "testId": 1,
+      "correctAnswer": 204
+  },
+  {
+      "id": 42,
+      "points": 0,
+      "description": "es a fusionar como separar es a",
+      "testId": 1,
+      "correctAnswer": 209
+  },
+  {
+      "id": 43,
+      "points": 0,
+      "description": "es a ciudad como nacional es a",
+      "testId": 1,
+      "correctAnswer": 212
+  },
+  {
+      "id": 44,
+      "points": 0,
+      "description": "es a vaca como carnero es a",
+      "testId": 1,
+      "correctAnswer": 216
+  },
+  {
+      "id": 45,
+      "points": 0,
+      "description": "es a nacer como cosa es a",
+      "testId": 1,
+      "correctAnswer": 221
+  },
+  {
+      "id": 46,
+      "points": 0,
+      "description": "es a tierra como nudo es a",
+      "testId": 1,
+      "correctAnswer": 227
+  },
+  {
+      "id": 47,
+      "points": 0,
+      "description": "es a pájaro como pelar es a",
+      "testId": 1,
+      "correctAnswer": 234
+  },
+  {
+      "id": 48,
+      "points": 0,
+      "description": "es a lector como elenco es a",
+      "testId": 1,
+      "correctAnswer": 236
+  },
+  {
+      "id": 49,
+      "points": 0,
+      "description": "es a prisión como Louvre es a",
+      "testId": 1,
+      "correctAnswer": 244
+  },
+  {
+      "id": 50,
+      "points": 0,
+      "description": "es a dibujo como pincel es a",
+      "testId": 1,
+      "correctAnswer": 250
+  }
+]
