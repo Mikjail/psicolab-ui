@@ -31,6 +31,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 # TO DO
 
-[ ] Login
-[ ] Test Summary Result
-[ ] Replace bootstrap to grid-ui
+- [ ] Login
+- [ ] Test Summary Result
+- [ ] Replace bootstrap to grid-ui
