@@ -1,3 +1,4 @@
+# THIS APP IS BEING DEPECRATED AND MOVED TO A NEW REPO (Updated to VUE 3)
 # piscolab
 
 ## Project setup
@@ -31,6 +32,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 # TO DO
 
-- [ ] Login
+- [ ] Login (In-porgress)
 - [ ] Test Summary Result
 - [ ] Replace bootstrap to grid-ui
