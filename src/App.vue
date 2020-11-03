@@ -37,4 +37,11 @@ body{
    background-color: white;
   }
 }
+.form-control {
+  border-color: $primary-light;
+  &:focus {
+    border-color: $primary-light;
+    box-shadow: 0 0 0 0.2rem #c0b8ff54;
+  }
+}
 </style>
