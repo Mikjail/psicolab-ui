@@ -1,5 +1,14 @@
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ?
+  devServer: {
+    proxy: {
+      '^/api': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+      },
+    },
+  },
+  publicPath: process.env
+    .NODE_ENV === 'production' ?
     '/psicolab-demo/' :
     '/',
   css: {

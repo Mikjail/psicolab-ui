@@ -7,32 +7,70 @@
             Usuario
           </label>
           <input class="form-control"
-                placeholder="jlopez@gmail.com"
+                v-model="username"
+                placeholder="jlopez"
                 type="text"
-                id="username">
+                id="username"
+                >
         </div>
         <div class="form-group">
           <label for="password">
             Contraseña
           </label>
           <input class="form-control"
+          v-model="password"
           type="password"
           id="password"
           placeholder="········">
         </div>
       </form>
       <a href="" class="login__panel__forgot-pass">Olvidaste tu contraseña?</a>
-      <button class="primary-btn">Iniciar sesion</button>
+      <button class="primary-btn" @click="handleSubmit">Iniciar sesion</button>
+      <div class="error-text">
+          {{this.authenticationError}}
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { mapActions, mapGetters } from 'vuex';
+import { Action } from 'vuex-class';
 
-@Component
+@Component({
+  computed: {
+    ...mapGetters('auth', [
+      'authenticating',
+      'authenticationError',
+      'authenticationErrorCode',
+    ]),
+  },
+  methods: {
+    ...mapActions('auth',
+      ['login']),
+  },
+})
 export default class Login extends Vue {
+  username!: string;
 
+  password!: string
+
+  constructor() {
+    super();
+    this.username = '';
+    this.password = '';
+  }
+
+  @Action('auth/login')
+  public login!: (user: { email: string; password: string}) => void;
+
+  handleSubmit() {
+    // Perform a simple validation that email and password have been typed in
+    if (this.username !== '' && this.password !== '') {
+      this.login({ email: this.username, password: this.password });
+    }
+  }
 }
 </script>
 
